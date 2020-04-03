@@ -1,2 +1,0 @@
-# thinkfast
-Created with CodeSandbox
