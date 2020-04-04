@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/loc6ewc.css");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,4 +11,7 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
+  font-family: azo-sans-web,sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }

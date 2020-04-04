@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { cards } from "./cardData";
-import Logo from "./Logo";
+import Logo from "./components/Logo";
+import SelectPlayers from "./components/SelectPlayers";
 import "./styles/App.scss";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       {/* <h1 onClick={e => gameMode(e, 2)}>Bye CodeSandbox</h1> */}
 
       <Logo />
+      <SelectPlayers />
     </div>
   );
 }
