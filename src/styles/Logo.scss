@@ -2,10 +2,30 @@
 
 .logo {
   display: flex;
+  position: relative;
   justify-content: flex-start;
   flex-direction: column;
   width: 30.5%;
+  top: 40%;
   &-brain, &-text {
     width: 100%;
+  }
+}
+
+.shrink {
+  animation: shrinkBrain 1s ease 0s 1 forwards;
+}
+
+@keyframes shrinkBrain {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    display: none;
   }
 }

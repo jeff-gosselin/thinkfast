@@ -1,16 +1,40 @@
 
 /* Sets up the white game board */
 .App {
+  position: relative;
   width: 100vw;
   height: 100vh;
   max-width: calc(100vh * .6);
   min-width: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   background-color: #ffffff;
+
+  #start-screen {
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 
 
+.title-placer {
+  animation: placeTitle 1s ease 1s 1 forwards;
+}
+
+@keyframes placeTitle {
+  0% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 0%;
+    transform: translateY(0%);
+  }
+}

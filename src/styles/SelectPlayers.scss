@@ -2,7 +2,7 @@
 @import "./_variables.scss";
 
 .player-menu {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,8 @@
   min-width: 200px;
   text-align: center;
   transition-duration: 1s;
+  opacity: 0;
+  animation: displayMenu 1s ease .5s 1 forwards;
 
   h2 {
     color: $gray;
@@ -41,9 +43,14 @@
   .player-menu-btn-two {
     background-color: $blue;
   }
+
+  .player-menu-btn-one:hover, .player-menu-btn-two:hover {
+    cursor: pointer;
+  }
 }
 
-/* Adjust for height */
+
+/* Adjust menu for height */
 @media (max-height: 820px) {
 
   .player-menu {
@@ -60,7 +67,7 @@
   
 }
 
-/* Adjust for width */
+/* Adjust menu for width */
 @media (max-width: 600px) {
 
   .player-menu {
@@ -74,3 +81,38 @@
   }
   
 }
+
+/* Animations */
+.menu-appear {
+  animation: displayMenu 1s ease .5s 1 forwards;
+}
+
+.menu-vanish {
+  animation: hideMenu 1s ease 0s 1 forwards;
+}
+
+@keyframes displayMenu {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+@keyframes hideMenu {
+  0% {
+    opacity: 1;
+    transform: translateY(0rem);
+    
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+}
+
