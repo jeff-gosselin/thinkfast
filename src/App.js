@@ -24,11 +24,11 @@ export default function App() {
   console.log(playerMode);
   return (
     <div className="App">
-      {/* <div id="start-screen" className={playerMode !== null ? null : null}>
+      <div id="start-screen" className={playerMode !== null ? null : null}>
         <Logo playerMode={playerMode} />
         <SelectPlayers gameMode={gameMode} playerMode={playerMode} />
-      </div> */}
-      <GameScreen />
+      </div>
+      {playerMode !== null ? <GameScreen /> : null}
     </div>
   );
 }
