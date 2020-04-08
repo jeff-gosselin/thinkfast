@@ -1,0 +1,7 @@
+@import './variables';
+
+#dashboard {
+  background-color: blue;
+  width: 100%;
+  height: $dashboard-height;
+}
