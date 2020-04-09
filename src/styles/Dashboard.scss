@@ -2,13 +2,14 @@
 @import url("https://use.typekit.net/loc6ewc.css");
 
 #dashboard {
+  position: relative;
   text-align: center;
   width: 100%;
   height: $dashboard-height;
 
   .header-logo {
     width: 30.5%;
-    margin: 1rem 0;
+    margin: .8rem 0;
   }
 
   .scoreboard {
@@ -19,16 +20,18 @@
       width: 50%; 
       background-color: #6C7983;
       color: #9FA7AE;
-      padding: 1rem;
+      padding: .85rem;
 
       h2 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
 
       .score {
         font-family: alternate-gothic-no-3-d,sans-serif;
-        font-size: 3.5rem;
+        font-size: 3.25rem;
         font-weight: 100;
+        line-height: 3.25rem;
+      
 
         span {
           font-size: 1.75rem;
@@ -49,5 +52,70 @@
       text-align: right;
       padding-right: 2rem;
     }
+  }
+
+  /* Player's turn indicator bars */
+  .turn-indicators {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .45rem;
+    width: 100%;
+    height: .9rem;
+    
+
+    &-p1, &-p2 {
+      width: 50%;
+      height: 100%;   
+    }
+
+    &-p1 {
+      margin-right: .225rem;
+      background-color: $coral;
+    }
+
+    &-p2 {
+      margin-left: .225rem;
+      background-color: $blue;
+    }
+    
+    /* Grays out color for indicator */
+    .inactive {
+      background-color: $gray !important;
+    }
+  }
+
+  .clock {
+    position: absolute;
+    width: $clock-size;
+    height: $clock-size;
+    border: .45rem solid #fff;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-64%);
+    background-color: $black;
+    transition-duration: 1s;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: alternate-gothic-no-3-d,sans-serif;
+    font-size: 2rem;
+  }
+
+  .start {
+    z-index: 10;
+    background-color: $green;
+  }
+}
+
+@media (max-height: 1040px) {
+  .clock {
+    transform: translateX(-50%) translateY(-75%) !important;
+  }
+}
+
+@media (max-height: 940px) {
+  .clock {
+    transform: translateX(-50%) translateY(-95%) !important;
   }
 }
