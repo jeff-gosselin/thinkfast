@@ -8,10 +8,16 @@ export default function Dashboard() {
       <LogoText className="header-logo" />
       <div className="scoreboard">
         <div className="scoreboard-p1">
-          <h2>Player 1</h2>
+          <h2>PLAYER 1</h2>
+          <h3 className="score">
+            0<span>pts</span>
+          </h3>
         </div>
         <div className="scoreboard-p2">
-          <h2>Player 2</h2>
+          <h2>PLAYER 2</h2>
+          <h3 className="score">
+            0<span>pts</span>
+          </h3>
         </div>
       </div>
     </div>
