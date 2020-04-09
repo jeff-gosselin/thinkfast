@@ -1,7 +1,41 @@
 @import './variables';
 
 #dashboard {
-  background-color: blue;
+  text-align: center;
   width: 100%;
   height: $dashboard-height;
+
+  .header-logo {
+    width: 30.5%;
+    margin: 1rem 0;
+  }
+
+  .scoreboard {
+    width: 100%;
+    display: flex;
+
+    &-p1, &-p2 {
+      width: 50%; 
+      background-color: #6C7983;
+      color: #9FA7AE;
+      padding: 1rem;
+
+      h2 {
+        font-size: 1.35rem;
+      }
+    }
+
+    &-p1 {
+      margin-right: .225rem;
+      text-align: left;
+      padding-left: 2rem;
+      
+    }
+
+    &-p2 {
+      margin-left: .225rem;
+      text-align: right;
+      padding-right: 2rem;
+    }
+  }
 }
