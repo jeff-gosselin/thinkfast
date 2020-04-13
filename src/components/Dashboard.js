@@ -8,7 +8,7 @@ export default function Dashboard() {
       <LogoText className="header-logo" />
 
       <div className="scoreboard">
-        <div className="scoreboard-p1">
+        <div className="scoreboard-p1 turn">
           <h2>PLAYER 1</h2>
           <h3 className="score">
             0<span>pts</span>

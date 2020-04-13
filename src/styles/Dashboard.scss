@@ -22,6 +22,7 @@
       color: #9FA7AE;
       padding: .85rem;
 
+
       h2 {
         font-size: 1.2rem;
       }
@@ -44,13 +45,18 @@
       margin-right: .225rem;
       text-align: left;
       padding-left: 2rem;
-      color: #fff;
+      animation: slideRt 1s ease 0s 1 forwards;
     }
 
     &-p2 {
       margin-left: .225rem;
       text-align: right;
       padding-right: 2rem;
+      animation: slideLt 1s ease 0s 1 forwards;
+    }
+
+    .turn {
+      color: #fff;
     }
   }
 
@@ -107,6 +113,30 @@
     z-index: 10;
     background-color: $green;
     box-shadow: inset 0px 0px 0px 6px #6C7983;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes slideRt {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideLt {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
   }
 }
 
