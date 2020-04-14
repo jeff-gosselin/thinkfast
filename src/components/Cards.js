@@ -3,13 +3,13 @@ import Card from "./Card";
 import { cardRandomizer } from "../gameFunctions";
 import "../styles/Grid.scss";
 
-export default function Cards({ gameCards }) {
+export default function Cards({ gameCards, cardSelected }) {
   let cards;
 
   if (gameCards) {
     let shuffledDeck = cardRandomizer(gameCards);
     cards = shuffledDeck.map(gameCard => (
-      <Card gameCard={gameCard} key={gameCard.id} />
+      <Card gameCard={gameCard} cardSelected={cardSelected} key={gameCard.id} />
     ));
   }
   return (

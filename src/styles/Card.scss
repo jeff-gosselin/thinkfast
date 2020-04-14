@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  animation: dealCard 2s ease .1s 1 forwards;
 
   
 
@@ -32,9 +34,23 @@
   }
 }
 
-
-
 .front {
   position: absolute;
   z-index: 200;
+}
+
+.clicked {
+  opacity: 0;
+}
+
+@keyframes dealCard {
+  0% {
+    opacity: 0;
+    transform: rotateY(720deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
 }
