@@ -1,14 +1,12 @@
 import React from "react";
 import Card from "./Card";
-import { cardRandomizer } from "../gameFunctions";
 import "../styles/Grid.scss";
 
 export default function Cards({ gameCards, cardSelected }) {
   let cards;
 
   if (gameCards) {
-    let shuffledDeck = cardRandomizer(gameCards);
-    cards = shuffledDeck.map(gameCard => (
+    cards = gameCards.map(gameCard => (
       <Card gameCard={gameCard} cardSelected={cardSelected} key={gameCard.id} />
     ));
   }

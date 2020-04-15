@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cards } from "../cardData";
+import { shuffleCards } from "../gameFunctions";
 import Dashboard from "./Dashboard";
 import Cards from "./Cards";
 import Grid from "./Grid";
@@ -11,7 +12,6 @@ export default function GameScreen() {
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
   const checkMatch = () => {
-    console.log(cardSelections);
     // checkes if 2 cards are selected and if not aborts
     if (cardSelections.length !== 2) {
       return;
@@ -20,25 +20,35 @@ export default function GameScreen() {
       // add points to player's score
       // remove cards from the gameCards
       setCardSelections([]);
+      return true;
     } else {
       console.log("No Match!!");
+      // hide the cards that were revealed
       setCardSelections([]);
+      return false;
     }
   };
 
   const cardSelected = (e, selectedCard) => {
     // make it so same card can't be selected twice so id can't be the same
-    if (cardSelections.length < 2) {
+    let picked = cardSelections.includes(selectedCard);
+    console.log("picked?", picked);
+
+    // Adds card to selection if less than 2 cards picked and won't allow for same card being picked twice.
+    if (!picked && cardSelections.length < 2) {
       setCardSelections([...cardSelections, selectedCard]);
     }
   };
 
   useEffect(() => {
-    return setGameCards([...cards]);
+    let shuffledDeck = shuffleCards(cards);
+    return setGameCards([...shuffledDeck]);
   }, [currentPlayer]);
 
-  console.log("You have selected: ", cardSelections);
-  checkMatch();
+  useEffect(() => {
+    checkMatch();
+  }, [cardSelections]);
+
   return (
     <div id="game-screen">
       <Dashboard />

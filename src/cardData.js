@@ -38,7 +38,7 @@ export const cards = [
   {
     id: 7,
     name: "Atom",
-    url: "000-Timer.svg",
+    url: "atom.svg",
     pts: 2
   },
   {
