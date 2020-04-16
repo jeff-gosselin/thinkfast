@@ -34,10 +34,14 @@ export default function GameScreen() {
 
   // 2. If there is a match
   const ifMatch = card => {
+    const audio = new Audio("audio/match.mp3");
+
     if (currentPlayer === 1) {
       setplayer1Score(player1Score + card.pts);
+      audio.play();
     } else {
       setplayer2Score(player2Score + card.pts);
+      audio.play();
     }
     setMatches([card.name, ...matches]);
     setCardChoices([]);
@@ -55,19 +59,20 @@ export default function GameScreen() {
 
   // ** When a card is selected
   const handleCardSelection = card => {
+    // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
       setCardChoices([...cardChoices, card]);
     }
 
+    // When 2nd card selection is made... checks if same card was not selected twice before adding
     if (cardChoices.length === 1 && card.id !== cardChoices[0].id) {
       setCardChoices([...cardChoices, card]);
+
+      // After 2 cards are selected... performs proper response to match or no match
       let match = checkMatch(cardChoices[0].name, card.name);
-      console.log("match?", match);
       if (match) {
-        console.log("It's a match!!!");
         ifMatch(card);
       } else {
-        console.log("It's NOT a match!!!");
         notMatch();
       }
     }
