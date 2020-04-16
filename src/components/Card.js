@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { ReactComponent as CardBackImg } from "../svgs/logo-brain.svg";
 import "../styles/Card.scss";
 
-export default function Card({ gameCard, cardSelected }) {
-  const [revealCard, setRevealCard] = useState(false);
-
-  const selectedCardAction = e => {
-    setRevealCard(true);
-    cardSelected(e, gameCard);
-  };
-
+export default function Card({
+  gameCard,
+  handleCardSelection,
+  cardChoices,
+  matches
+}) {
   return (
     <div className="card">
       <div
-        onClick={selectedCardAction}
-        className={revealCard ? "back clicked" : "back"}
+        onClick={() => handleCardSelection(gameCard)}
+        className={
+          matches.includes(gameCard.name) || cardChoices.includes(gameCard)
+            ? "back clicked"
+            : "back"
+        }
       >
         <CardBackImg class="back-img" />
       </div>
