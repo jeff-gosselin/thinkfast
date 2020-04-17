@@ -7,7 +7,7 @@ export default function Round({ roundNumber }) {
   let audio = new Howl({
     src: [`audio/round-${roundNumber}.mp3`],
     volume: 0.75,
-    rate: 1.25
+    rate: 1.45
   });
 
   audio.play();

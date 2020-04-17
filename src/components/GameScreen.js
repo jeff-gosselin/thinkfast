@@ -15,7 +15,7 @@ import { Howl, Howler } from "howler";
 
 export default function GameScreen({ playerMode }) {
   // Time for each round
-  let roundTime = 9;
+  let roundTime = 60;
 
   // Cards
   const [gameCards, setGameCards] = useState([]);
@@ -92,6 +92,10 @@ export default function GameScreen({ playerMode }) {
 
   // 3. If there is not a match
   const notMatch = () => {
+    let misMatch = new Howl({
+      src: ["audio/no.mp3"]
+    });
+    misMatch.play();
     if (currentPlayer === true) {
       setplayer1Score(player1Score - 1);
     } else {
@@ -102,6 +106,9 @@ export default function GameScreen({ playerMode }) {
 
   // ** When a card is selected
   const handleCardSelection = card => {
+    let revealCard = new Howl({
+      src: ["audio/click.mp3"]
+    });
     // Can't choose a card unless clock has been started
     if (!startClock) {
       return;
@@ -109,11 +116,13 @@ export default function GameScreen({ playerMode }) {
 
     // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
+      revealCard.play();
       setCardChoices([...cardChoices, card]);
     }
 
     // When 2nd card selection is made... checks if same card was not selected twice before adding
     if (cardChoices.length === 1 && card.id !== cardChoices[0].id) {
+      revealCard.play();
       setCardChoices([...cardChoices, card]);
 
       // After 2 cards are selected... performs proper response to match or no match

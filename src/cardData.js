@@ -145,15 +145,15 @@ export const cards = [
   },
   {
     id: 25,
-    name: "Black-hole",
-    url: "black-hole.svg",
-    pts: 4
+    name: "Scientist",
+    url: "scientist.svg",
+    pts: 15
   },
   {
     id: 26,
-    name: "Black-hole",
-    url: "black-hole.svg",
-    pts: 4
+    name: "Scientist",
+    url: "scientist.svg",
+    pts: 15
   },
   {
     id: 27,
