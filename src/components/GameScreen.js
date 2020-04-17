@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { cards } from "../cardData";
-import { shuffleCards } from "../gameFunctions";
+import { shuffleCards } from "../shuffleCards";
+
+// Component imports
+import Round from "./Round";
 import Dashboard from "./Dashboard";
 import Cards from "./Cards";
 import Grid from "./Grid";
+
+// Styles import
 import "../styles/GameScreen.scss";
 
 import { Howl, Howler } from "howler";
 
-export default function GameScreen() {
+export default function GameScreen({ playerMode }) {
   // Time for each round
-  let roundTime = 59;
+  let roundTime = 9;
 
   // Cards
   const [gameCards, setGameCards] = useState([]);
@@ -26,11 +31,18 @@ export default function GameScreen() {
   const [startClock, setStartClock] = useState(false);
   const [clockTime, setClockTime] = useState(roundTime);
 
+  // Rounds
+  const [round, setRound] = useState(1);
+
+  ////////////////////////////////////////////////////////////////////
+
+  // Shuffles deck when players switch turns
   useEffect(() => {
     let shuffledDeck = shuffleCards(cards);
     return setGameCards([...shuffledDeck]);
   }, [currentPlayer]);
 
+  // Resets and shuffles cards if all matches in deck are made
   useEffect(() => {
     if (matches.length === 14) {
       let shuffledDeck = shuffleCards(cards);
@@ -38,6 +50,17 @@ export default function GameScreen() {
       setGameCards([...shuffledDeck]);
     }
   }, [cardChoices]);
+
+  // New Round
+  useEffect(() => {
+    console.log("This is Round #", round);
+    if (playerMode === 1) {
+      let shuffledDeck = shuffleCards(cards);
+      return setGameCards([...shuffledDeck]);
+    }
+  }, [round]);
+
+  ////////////////////////////////////////////////////////////////////
 
   // ** What happens after 2 cards are picked
   // 1. Checks for a match
@@ -120,11 +143,22 @@ export default function GameScreen() {
           if (clockTime > 0) {
             return clockTime - 1;
           } else {
-            let audio = new Audio("audio/buzzer.mp3");
+            let audio = new Howl({
+              src: ["audio/buzzer.mp3"],
+              volume: 0.35
+            });
             audio.play();
             setMatches([]);
             setCardChoices([]);
-            setCurrentPlayer(!currentPlayer);
+
+            // Switches to other player if in 2 Player Mode
+            if (playerMode !== 1) {
+              setCurrentPlayer(!currentPlayer);
+              setRound(round + 0.5);
+            } else {
+              setRound(round + 1);
+            }
+
             setStartClock(false);
             setClockTime(roundTime);
             clearInterval(clock);
@@ -134,9 +168,11 @@ export default function GameScreen() {
     );
   };
 
-  console.log("matches:", matches.length);
   return (
     <div id="game-screen">
+      {round === Math.ceil(round) && !startClock ? (
+        <Round roundNumber={round} />
+      ) : null}
       <Dashboard
         currentPlayer={currentPlayer}
         player1Score={player1Score}

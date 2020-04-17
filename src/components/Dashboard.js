@@ -10,7 +10,6 @@ export default function Dashboard({
   runClock,
   clockTime
 }) {
-  console.log("P1:", player1Score);
   return (
     <div id="dashboard">
       <LogoText className="header-logo" />
@@ -36,8 +35,18 @@ export default function Dashboard({
       </div>
 
       <div className="turn-indicators">
-        <div className="turn-indicators-p1" />
-        <div className="turn-indicators-p2 inactive" />
+        <div
+          className={
+            currentPlayer ? "turn-indicators-p1" : "turn-indicators-p1 inactive"
+          }
+        />
+        <div
+          className={
+            !currentPlayer
+              ? "turn-indicators-p2"
+              : "turn-indicators-p2 inactive"
+          }
+        />
       </div>
 
       <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>

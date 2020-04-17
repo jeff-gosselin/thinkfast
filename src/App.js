@@ -12,14 +12,13 @@ export default function App() {
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
   }
 
-  console.log(playerMode);
   return (
     <div id="App">
       <div id="start-screen" className={playerMode !== null ? null : null}>
         <Logo playerMode={playerMode} />
         <SelectPlayers gameMode={gameMode} playerMode={playerMode} />
       </div>
-      {playerMode !== null ? <GameScreen /> : null}
+      {playerMode !== null ? <GameScreen playerMode={playerMode} /> : null}
     </div>
   );
 }
