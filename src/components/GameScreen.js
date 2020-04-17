@@ -7,14 +7,22 @@ import Grid from "./Grid";
 import "../styles/GameScreen.scss";
 
 export default function GameScreen() {
-  const [gameCards, setGameCards] = useState([]);
-  const [player1Score, setplayer1Score] = useState(0);
-  const [player2Score, setplayer2Score] = useState(0);
-  const [currentPlayer, setCurrentPlayer] = useState(1);
+  // Time for each round
+  let roundTime = 59;
 
+  // Cards
+  const [gameCards, setGameCards] = useState([]);
   const [cardChoices, setCardChoices] = useState([]);
   const [matches, setMatches] = useState([]);
-  const [isMatch, setIsMatch] = useState(false);
+
+  // Players
+  const [player1Score, setplayer1Score] = useState(0);
+  const [player2Score, setplayer2Score] = useState(0);
+  const [currentPlayer, setCurrentPlayer] = useState(true);
+
+  // Clock
+  const [startClock, setStartClock] = useState(false);
+  const [clockTime, setClockTime] = useState(roundTime);
 
   useEffect(() => {
     let shuffledDeck = shuffleCards(cards);
@@ -36,7 +44,7 @@ export default function GameScreen() {
   const ifMatch = card => {
     const audio = new Audio("audio/match.mp3");
 
-    if (currentPlayer === 1) {
+    if (currentPlayer === true) {
       setplayer1Score(player1Score + card.pts);
       audio.play();
     } else {
@@ -49,7 +57,7 @@ export default function GameScreen() {
 
   // 3. If there is not a match
   const notMatch = () => {
-    if (currentPlayer === 1) {
+    if (currentPlayer === true) {
       setplayer1Score(player1Score - 1);
     } else {
       setplayer2Score(player2Score - 1);
@@ -78,11 +86,36 @@ export default function GameScreen() {
     }
   };
 
-  console.log("cardChoices", cardChoices);
-  console.log("matches", matches);
+  // Start clock
+  const runClock = () => {
+    setStartClock(true);
+    let clock = setInterval(
+      () =>
+        setClockTime(clockTime => {
+          if (clockTime > 0) {
+            return clockTime - 1;
+          } else {
+            setCurrentPlayer(!currentPlayer);
+            setStartClock(false);
+            setClockTime(roundTime);
+            setMatches([]);
+            clearInterval(clock);
+          }
+        }),
+      1000
+    );
+  };
+
+  console.log("start clock?", startClock);
   return (
     <div id="game-screen">
-      <Dashboard player1Score={player1Score} player2Score={player2Score} />
+      <Dashboard
+        player1Score={player1Score}
+        player2Score={player2Score}
+        startClock={startClock}
+        runClock={runClock}
+        clockTime={clockTime}
+      />
       <Cards
         gameCards={gameCards}
         handleCardSelection={handleCardSelection}

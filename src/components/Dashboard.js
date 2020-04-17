@@ -2,7 +2,13 @@ import React from "react";
 import { ReactComponent as LogoText } from "../svgs/logo-text.svg";
 import "../styles/Dashboard.scss";
 
-export default function Dashboard({ player1Score, player2Score }) {
+export default function Dashboard({
+  player1Score,
+  player2Score,
+  startClock,
+  runClock,
+  clockTime
+}) {
   console.log("P1:", player1Score);
   return (
     <div id="dashboard">
@@ -31,8 +37,12 @@ export default function Dashboard({ player1Score, player2Score }) {
         <div className="turn-indicators-p2 inactive" />
       </div>
 
-      <div className="clock start">START</div>
-      <div className="clock">00:00</div>
+      <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>
+        START
+      </div>
+      <div className="clock">{`${Math.floor(clockTime / 60)}:${
+        Math.floor(clockTime % 60) < 10 ? "0" : ""
+      }${Math.floor(clockTime % 60)}`}</div>
     </div>
   );
 }

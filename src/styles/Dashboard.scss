@@ -111,6 +111,10 @@
     font-size: 2rem;
   }
 
+  .hide {
+    display: none;
+  }
+
   .start {
     z-index: 10;
     background-color: $green;
