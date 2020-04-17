@@ -3,6 +3,7 @@ import { ReactComponent as LogoText } from "../svgs/logo-text.svg";
 import "../styles/Dashboard.scss";
 
 export default function Dashboard({
+  currentPlayer,
   player1Score,
   player2Score,
   startClock,
@@ -15,7 +16,7 @@ export default function Dashboard({
       <LogoText className="header-logo" />
 
       <div className="scoreboard">
-        <div className="scoreboard-p1 turn">
+        <div className={currentPlayer ? "scoreboard-p1 turn" : "scoreboard-p1"}>
           <h2>PLAYER 1</h2>
           <h3 className="score">
             {player1Score}
@@ -23,7 +24,9 @@ export default function Dashboard({
           </h3>
         </div>
 
-        <div className="scoreboard-p2">
+        <div
+          className={!currentPlayer ? "scoreboard-p2 turn" : "scoreboard-p2"}
+        >
           <h2>PLAYER 2</h2>
           <h3 className="score">
             {player2Score}

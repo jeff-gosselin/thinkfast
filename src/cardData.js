@@ -123,13 +123,13 @@ export const cards = [
     id: 21,
     name: "Robot",
     url: "robot.svg",
-    pts: 4
+    pts: 10
   },
   {
     id: 22,
     name: "Robot",
     url: "robot.svg",
-    pts: 4
+    pts: 10
   },
   {
     id: 23,
