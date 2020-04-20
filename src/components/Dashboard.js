@@ -8,7 +8,8 @@ export default function Dashboard({
   player2Score,
   startClock,
   runClock,
-  clockTime
+  clockTime,
+  shake
 }) {
   return (
     <div id="dashboard">
@@ -17,7 +18,7 @@ export default function Dashboard({
       <div className="scoreboard">
         <div className={currentPlayer ? "scoreboard-p1 turn" : "scoreboard-p1"}>
           <h2>PLAYER 1</h2>
-          <h3 className="score">
+          <h3 className={shake && currentPlayer ? "score shake" : "score"}>
             {player1Score}
             <span className="pts">pts</span>
           </h3>
@@ -27,7 +28,7 @@ export default function Dashboard({
           className={!currentPlayer ? "scoreboard-p2 turn" : "scoreboard-p2"}
         >
           <h2>PLAYER 2</h2>
-          <h3 className="score">
+          <h3 className={shake && !currentPlayer ? "score shake" : "score"}>
             {player2Score}
             <span className="pts">pts</span>
           </h3>

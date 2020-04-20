@@ -16,16 +16,28 @@
     font-family: alternate-gothic-no-3-d,sans-serif;
     font-size: 1rem;
     color: $black;
-    text-shadow: 0px 0px 4px #fff;
-    animation: new-round 1.75s ease-out 0s forwards;
+    text-shadow: 0px 0px 6px #fff;
+    animation: pointsReveal 1.25s ease-out 0s forwards;
   }
 }
 
+.plus h1 {
+  color: $green !important;
+}
 
-@keyframes new-round {
+.minus h1 {
+  color: $coral !important;
+}
+
+
+@keyframes pointsReveal {
   0% {
     
     transform: scale(1);
+    opacity: 1;
+  }
+
+  20% {
     opacity: 1;
   }
 

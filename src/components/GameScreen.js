@@ -37,7 +37,7 @@ export default function GameScreen({ playerMode }) {
   const [round, setRound] = useState(1);
 
   // Current points scored
-  const [displayPoints, setDisplayPoints] = useState(false);
+  const [shake, setShake] = useState(false);
   const [points, setPoints] = useState(0);
 
   ////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ export default function GameScreen({ playerMode }) {
   // ** What happens after 2 cards are picked
   // 1. Checks for a match
   const checkMatch = (card1, card2) => {
-    setDisplayPoints(true);
+    setShake(true);
     if (card1 === card2) {
       return true;
     } else {
@@ -113,6 +113,7 @@ export default function GameScreen({ playerMode }) {
       setplayer2Score(player2Score - 1);
     }
     setPoints(-1);
+
     setTimeout(() => setCardChoices([]), 1000);
     misMatch.play();
   };
@@ -154,6 +155,7 @@ export default function GameScreen({ playerMode }) {
       } else {
         notMatch(); // Subtracts a point to player's score
       }
+      setTimeout(() => setShake(false), 1000);
     }
   };
 
@@ -215,6 +217,7 @@ export default function GameScreen({ playerMode }) {
         startClock={startClock}
         runClock={runClock}
         clockTime={clockTime}
+        shake={shake}
       />
       <Cards
         gameCards={gameCards}
