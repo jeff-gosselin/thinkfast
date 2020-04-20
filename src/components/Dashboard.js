@@ -19,7 +19,7 @@ export default function Dashboard({
           <h2>PLAYER 1</h2>
           <h3 className="score">
             {player1Score}
-            <span>pts</span>
+            <span className="pts">pts</span>
           </h3>
         </div>
 
@@ -29,7 +29,7 @@ export default function Dashboard({
           <h2>PLAYER 2</h2>
           <h3 className="score">
             {player2Score}
-            <span>pts</span>
+            <span className="pts">pts</span>
           </h3>
         </div>
       </div>

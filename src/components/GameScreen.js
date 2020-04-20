@@ -7,10 +7,12 @@ import Round from "./Round";
 import Dashboard from "./Dashboard";
 import Cards from "./Cards";
 import Grid from "./Grid";
+import Points from "./Points";
 
 // Styles import
 import "../styles/GameScreen.scss";
 
+// Dependancy for sound
 import { Howl, Howler } from "howler";
 
 export default function GameScreen({ playerMode }) {
@@ -33,6 +35,10 @@ export default function GameScreen({ playerMode }) {
 
   // Rounds
   const [round, setRound] = useState(1);
+
+  // Current points scored
+  const [displayPoints, setDisplayPoints] = useState(false);
+  const [points, setPoints] = useState(0);
 
   ////////////////////////////////////////////////////////////////////
 
@@ -65,7 +71,7 @@ export default function GameScreen({ playerMode }) {
   // ** What happens after 2 cards are picked
   // 1. Checks for a match
   const checkMatch = (card1, card2) => {
-    console.log("matches:", card1, card2);
+    setDisplayPoints(true);
     if (card1 === card2) {
       return true;
     } else {
@@ -75,36 +81,43 @@ export default function GameScreen({ playerMode }) {
 
   // 2. If there is a match
   const ifMatch = card => {
-    const audio = new Howl({
-      src: ["audio/match.mp3"]
+    const matchMade = new Howl({
+      src: ["audio/match.mp3"],
+      volume: 0.25
     });
+
+    // Doesn't play normal match sound if the match is the Timer
+    card.name !== "Timer" && matchMade.play();
 
     if (currentPlayer === true) {
       setplayer1Score(player1Score + card.pts);
-      audio.play();
     } else {
       setplayer2Score(player2Score + card.pts);
-      card.name !== "Timer" && audio.play();
     }
+
     setMatches([card.name, ...matches]);
-    setCardChoices([]);
+    setPoints(card.pts);
+    setTimeout(() => setCardChoices([]), 1000);
   };
 
   // 3. If there is not a match
   const notMatch = () => {
     let misMatch = new Howl({
-      src: ["audio/no.mp3"]
+      src: ["audio/error.mp3"],
+      volume: 0.35
     });
-    misMatch.play();
+
     if (currentPlayer === true) {
       setplayer1Score(player1Score - 1);
     } else {
       setplayer2Score(player2Score - 1);
     }
+    setPoints(-1);
     setTimeout(() => setCardChoices([]), 1000);
+    misMatch.play();
   };
 
-  // ** When a card is selected
+  // ** When a card is selected **********************************************************
   const handleCardSelection = card => {
     let revealCard = new Howl({
       src: ["audio/click.mp3"]
@@ -117,7 +130,7 @@ export default function GameScreen({ playerMode }) {
     // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
       revealCard.play();
-      setCardChoices([...cardChoices, card]);
+      setCardChoices([card]);
     }
 
     // When 2nd card selection is made... checks if same card was not selected twice before adding
@@ -131,7 +144,8 @@ export default function GameScreen({ playerMode }) {
         // If player gets the "Timer" match... 30 seconds are added to the clock
         if (card.name === "Timer") {
           let audio = new Howl({
-            src: ["audio/time-added.mp3"]
+            src: ["audio/time-added.mp3"],
+            volume: 0.5
           });
           setClockTime(clockTime + 30);
           audio.play();
@@ -145,6 +159,17 @@ export default function GameScreen({ playerMode }) {
 
   // Start clock
   const runClock = () => {
+    let clockClick = new Howl({
+      src: ["audio/clock-click.mp3"],
+      volume: 0.5
+    });
+    // let countdown = new Howl({
+    //   src: ["audio/countdown.mp3"],
+    //   volume: 0.5,
+    //   loop: true
+    // });
+    clockClick.play();
+    // countdown.play();
     setStartClock(true);
     let clock = setInterval(
       () =>
@@ -152,11 +177,12 @@ export default function GameScreen({ playerMode }) {
           if (clockTime > 0) {
             return clockTime - 1;
           } else {
-            let audio = new Howl({
+            let buzz = new Howl({
               src: ["audio/buzzer.mp3"],
               volume: 0.35
             });
-            audio.play();
+            buzz.play();
+            // countdown.stop();
             setMatches([]);
             setCardChoices([]);
 
@@ -176,12 +202,12 @@ export default function GameScreen({ playerMode }) {
       1000
     );
   };
-
   return (
     <div id="game-screen">
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}
+      {cardChoices.length > 1 ? <Points cardPoints={points} /> : null}
       <Dashboard
         currentPlayer={currentPlayer}
         player1Score={player1Score}

@@ -9,6 +9,12 @@ export default function App() {
   const [playerMode, setPlayerMode] = useState(null);
 
   function gameMode(e, players) {
+    let theme = new Howl({
+      src: ["audio/theme.mp3"],
+      volume: 0.25,
+      loop: true
+    });
+    theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
   }
 

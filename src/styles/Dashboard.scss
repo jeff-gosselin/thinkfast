@@ -33,8 +33,11 @@
         font-weight: 100;
         line-height: 3.25rem;
       
+        .shake {
+          animation: shaker .25s ease 0s 1 forwards;
+        }
 
-        span {
+        .pts {
           font-size: 1.75rem;
           margin-left: .5rem;
         }
@@ -126,6 +129,9 @@
   }
 }
 
+/*** Animations ***/
+
+/* Slides in the scoreboard */
 @keyframes slideRt {
   0% {
     transform: translateX(-100%);
@@ -146,6 +152,22 @@
   }
 }
 
+/* Shakes score */
+@keyframes shaker {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/*** Media Queries ***/
 @media (max-height: 1040px) {
   .clock {
     transform: translateX(-50%) translateY(-75%) !important;
@@ -157,3 +179,4 @@
     transform: translateX(-50%) translateY(-95%) !important;
   }
 }
+
