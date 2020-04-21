@@ -1,26 +1,120 @@
-
+@import './variables';
 
 .learn {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: #fff;
-  padding: 3rem;
+  color: rgba($black, .85);
+  text-align: center;
+  padding: 2rem 3rem;
   transition: all 1s cubic-bezier(.2,.67,.19,.97);
+  overflow: auto;
 
   
-  .learn-section {
+  &-section {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
+    padding-bottom: 2rem;
     
   
     &-brain, &-text {
-      width: 30.5%;
+      width: 24.5%;
     }
   }
+
+  &-content {
+    border-top: 1px solid rgba($black, .15);
+    margin-top: 2rem 0;
+    
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1.5rem 0;
+      
+    }
+    
+    &-section {
+      margin-bottom: 1.25rem;
+  
+  
+      h3, p {
+        text-align: left;
+      }
+  
+      h3 {
+        font-size: 1.15rem;
+        font-weight: bold;
+        margin: 0 0 .2rem 0;
+      }
+  
+      p {
+        font-size: 1rem;
+        
+      }
+
+      .deduct {
+        margin-top: 1.25rem;
+      }
+
+      .points-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin-top: 1rem;
+        
+
+        
+
+        img {
+          align-self: center;
+          // position: absolute;
+          width: 12.5%;
+          
+        }
+
+          
+          
+        
+
+        &-p {
+          text-align: left;
+          margin-left: 1.5rem;
+          font-size: 1rem;
+
+          p {
+            font-size: 1.05rem;
+          }
+        }
+        
+      
+      }
+
+      .gameplay {
+        margin-top: 1rem;
+      }
+    }
+
+    
+
+  }
+    
+
+  
+}
+
+.robot {
+  transform: scale(.75);
+  opacity: .85;
+}
+
+.scientist {
+  transform: scale(.85);
+  opacity: .85;
 }
 
 .hide {

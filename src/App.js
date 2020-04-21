@@ -29,7 +29,7 @@ export default function App() {
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
   }
-  console.log("Learn:", learnGame);
+
   return (
     <div id="App">
       {isEnd ? (

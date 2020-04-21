@@ -3,13 +3,13 @@ export const cards = [
     id: 1,
     name: "Timer",
     url: "timer.svg",
-    pts: 4
+    pts: 0
   },
   {
     id: 2,
     name: "Timer",
     url: "timer.svg",
-    pts: 4
+    pts: 0
   },
   {
     id: 3,
