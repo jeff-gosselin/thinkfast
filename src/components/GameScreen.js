@@ -163,7 +163,9 @@ export default function GameScreen({
             src: ["audio/time-added.mp3"],
             volume: 0.5
           });
-          setClockTime(clockTime + 30);
+
+          setClockTime(clockTime + 30); // Adds 30 seconds to the clock
+
           audio.play();
         }
         ifMatch(card); // Adds points to player's score
@@ -228,7 +230,7 @@ export default function GameScreen({
 
   return (
     <div id="game-screen">
-      {Math.floor(round) > 2 ? gameOver() : null}
+      {Math.floor(round) > 8 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}

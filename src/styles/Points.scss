@@ -33,7 +33,7 @@
 @keyframes pointsReveal {
   0% {
     
-    transform: scale(1);
+    transform: scale(4);
     opacity: 1;
   }
 
@@ -42,7 +42,7 @@
   }
 
   100% {
-    transform: scale(9);
+    transform: scale(20);
     opacity: 0;
   }
 }
