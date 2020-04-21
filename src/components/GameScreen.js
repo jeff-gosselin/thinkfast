@@ -15,9 +15,12 @@ import "../styles/GameScreen.scss";
 // Dependancy for sound
 import { Howl, Howler } from "howler";
 
-export default function GameScreen({ playerMode }) {
+export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
   // Time for each round
-  let roundTime = 60;
+  let roundTime = 3;
+
+  // Master Volume
+  Howler.volume(0.85);
 
   // Cards
   const [gameCards, setGameCards] = useState([]);
@@ -204,8 +207,16 @@ export default function GameScreen({ playerMode }) {
       1000
     );
   };
+
+  // End of Game
+  const gameOver = () => {
+    setIsEnd(true);
+    Howler.unload();
+  };
+
   return (
     <div id="game-screen">
+      {round > 8 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}
