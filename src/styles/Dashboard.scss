@@ -21,7 +21,7 @@
       background-color: #6C7983;
       color: #9FA7AE;
       padding: .8rem;
-
+      transition-duration: 1s;
 
       h2 {
         font-size: 1.2rem;
@@ -32,12 +32,13 @@
         font-size: 3.25rem;
         font-weight: 100;
         line-height: 3.25rem;
-      
+        transition-duration: 1s;
         
 
         .pts {
           font-size: 1.75rem;
           margin-left: .5rem;
+          transition-duration: 1s;
         }
       }
     }
@@ -185,5 +186,40 @@
   .clock {
     transform: translateX(-50%) translateY(-95%) !important;
   }
+
+  .start {
+    font-size: 1.75rem !important;
+  }
+
+  
 }
 
+
+@media (max-height: 850px) {
+  .scoreboard {
+    &-p1, &-p2 {
+
+      h2 {
+        font-size: 1rem !important;
+      }
+
+      .score {
+        font-size: 3rem !important;
+        line-height: 2rem;
+
+        .pts {
+          font-size: 1.5rem !important;
+          margin-left: .25rem !important;
+        }
+      }
+    }
+
+    &-p1 {
+      padding-left: 1rem !important;
+    }
+    
+    &-p2 {
+      padding-right: 1rem !important;
+    }
+  }
+}
