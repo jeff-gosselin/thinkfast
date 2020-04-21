@@ -15,9 +15,16 @@ import "../styles/GameScreen.scss";
 // Dependancy for sound
 import { Howl, Howler } from "howler";
 
-export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
+export default function GameScreen({
+  playerMode,
+  player1Score,
+  setPlayer1Score,
+  player2Score,
+  setPlayer2Score,
+  setIsEnd
+}) {
   // Time for each round
-  let roundTime = 3;
+  let roundTime = 60;
 
   // Master Volume
   Howler.volume(0.85);
@@ -28,8 +35,6 @@ export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
   const [matches, setMatches] = useState([]);
 
   // Players
-  const [player1Score, setplayer1Score] = useState(0);
-  const [player2Score, setplayer2Score] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState(true);
 
   // Clock
@@ -93,9 +98,9 @@ export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
     card.name !== "Timer" && matchMade.play();
 
     if (currentPlayer === true) {
-      setplayer1Score(player1Score + card.pts);
+      setPlayer1Score(player1Score + card.pts);
     } else {
-      setplayer2Score(player2Score + card.pts);
+      setPlayer2Score(player2Score + card.pts);
     }
 
     setMatches([card.name, ...matches]);
@@ -111,9 +116,9 @@ export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
     });
 
     if (currentPlayer === true) {
-      setplayer1Score(player1Score - 1);
+      setPlayer1Score(player1Score - 1);
     } else {
-      setplayer2Score(player2Score - 1);
+      setPlayer2Score(player2Score - 1);
     }
     setPoints(-1);
 
@@ -123,13 +128,20 @@ export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
 
   // ** When a card is selected **********************************************************
   const handleCardSelection = card => {
-    let revealCard = new Howl({
-      src: ["audio/click.mp3"]
-    });
+    // Prevents from clicking cards that are already a match
+    if (matches.includes(card.name)) {
+      return;
+    }
+
     // Can't choose a card unless clock has been started
     if (!startClock) {
       return;
     }
+
+    // Sound for card reveal
+    let revealCard = new Howl({
+      src: ["audio/click.mp3"]
+    });
 
     // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
@@ -216,7 +228,7 @@ export default function GameScreen({ playerMode, setPlayerMode, setIsEnd }) {
 
   return (
     <div id="game-screen">
-      {round > 8 ? gameOver() : null}
+      {Math.floor(round) > 2 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}

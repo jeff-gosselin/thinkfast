@@ -1,7 +1,9 @@
 @import './variables';
+@import url("https://use.typekit.net/loc6ewc.css");
 
 #end-game {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -9,8 +11,58 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $green;
+  background-color: $blue;
   color: #fff;
   font-family: alternate-gothic-no-3-d,sans-serif;
   z-index: 5000;
+
+  .farewell-message {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    
+
+    & h1 {
+      font-size: 5rem;
+      font-weight: 300;
+      line-height: 3.75rem;
+      
+    }
+
+    & h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 3.75rem;
+      
+    }
+
+    & p {
+      font-weight: 100;
+      font-size: 1.75rem;
+      letter-spacing: .075rem;
+      margin-top: 2rem;
+      opacity: .55;
+    }
+  }
+
+  button {
+    padding: .75rem .25rem .5rem;
+    margin: .9rem 0;
+    color: #fff;
+    background-color: $coral;
+    font-family: alternate-gothic-no-3-d,sans-serif;
+    font-weight: 400;
+    font-size: 1.85rem;
+    border: none;
+    border-radius: 30px;
+    width: 60%;
+    transition-duration: 1s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

@@ -8,7 +8,11 @@ import EndGame from "./components/EndGame";
 import "./styles/App.scss";
 
 export default function App() {
+  // Players
   const [playerMode, setPlayerMode] = useState(null);
+  const [player1Score, setPlayer1Score] = useState(0);
+  const [player2Score, setPlayer2Score] = useState(0);
+
   const [isEnd, setIsEnd] = useState(false);
 
   function gameMode(e, players) {
@@ -24,7 +28,15 @@ export default function App() {
   return (
     <div id="App">
       {isEnd ? (
-        <EndGame setIsEnd={setIsEnd} setPlayerMode={setPlayerMode} />
+        <EndGame
+          setIsEnd={setIsEnd}
+          playerMode={playerMode}
+          setPlayerMode={setPlayerMode}
+          player1Score={player1Score}
+          setPlayer1Score={setPlayer1Score}
+          player2Score={player2Score}
+          setPlayer2Score={setPlayer2Score}
+        />
       ) : null}
       <div id="start-screen" className={playerMode !== null ? null : null}>
         <Logo playerMode={playerMode} />
@@ -34,6 +46,10 @@ export default function App() {
         <GameScreen
           playerMode={playerMode}
           setPlayerMode={setPlayerMode}
+          player1Score={player1Score}
+          setPlayer1Score={setPlayer1Score}
+          player2Score={player2Score}
+          setPlayer2Score={setPlayer2Score}
           setIsEnd={setIsEnd}
         />
       ) : null}
