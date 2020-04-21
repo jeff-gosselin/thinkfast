@@ -4,6 +4,7 @@ import Logo from "./components/Logo";
 import SelectPlayers from "./components/SelectPlayers";
 import GameScreen from "./components/GameScreen";
 import EndGame from "./components/EndGame";
+import Learn from "./components/Learn";
 
 import "./styles/App.scss";
 
@@ -13,6 +14,10 @@ export default function App() {
   const [player1Score, setPlayer1Score] = useState(0);
   const [player2Score, setPlayer2Score] = useState(0);
 
+  // How to Play
+  const [learnGame, setLearnGame] = useState(false);
+
+  // Determines if game ends
   const [isEnd, setIsEnd] = useState(false);
 
   function gameMode(e, players) {
@@ -24,7 +29,7 @@ export default function App() {
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
   }
-
+  console.log("Learn:", learnGame);
   return (
     <div id="App">
       {isEnd ? (
@@ -53,6 +58,16 @@ export default function App() {
           setIsEnd={setIsEnd}
         />
       ) : null}
+
+      {playerMode === null ? (
+        <div className="learn-game">
+          <p onClick={() => setLearnGame(true)} className="learn-game-link">
+            How to Play
+          </p>
+        </div>
+      ) : null}
+
+      <Learn learnGame={learnGame} setLearnGame={setLearnGame} />
     </div>
   );
 }
