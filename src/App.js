@@ -8,13 +8,16 @@ import Learn from "./components/Learn";
 
 import "./styles/App.scss";
 
+// Dependancy for sound
+import { Howl, Howler } from "howler";
+
 export default function App() {
   // Players
   const [playerMode, setPlayerMode] = useState(null);
   const [player1Score, setPlayer1Score] = useState(0);
   const [player2Score, setPlayer2Score] = useState(0);
 
-  // How to Play
+  // Toggles Game Instructions
   const [learnGame, setLearnGame] = useState(false);
 
   // Determines if game ends
@@ -24,7 +27,7 @@ export default function App() {
     let theme = new Howl({
       src: ["audio/theme.mp3"],
       volume: 0.2,
-      loop: true
+      loop: true,
     });
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
