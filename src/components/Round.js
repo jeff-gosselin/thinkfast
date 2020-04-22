@@ -1,13 +1,13 @@
 import React from "react";
 import "../styles/Round.scss";
 
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 
 export default function Round({ roundNumber }) {
   let audio = new Howl({
     src: [`audio/round-${roundNumber}.mp3`],
     volume: 0.3,
-    rate: 1.45
+    rate: 1.45,
   });
 
   audio.play();

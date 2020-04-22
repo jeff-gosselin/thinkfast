@@ -21,7 +21,7 @@ export default function GameScreen({
   setPlayer1Score,
   player2Score,
   setPlayer2Score,
-  setIsEnd
+  setIsEnd,
 }) {
   // Time for each round
   let roundTime = 60;
@@ -67,7 +67,6 @@ export default function GameScreen({
 
   // New Round
   useEffect(() => {
-    console.log("This is Round #", round);
     if (playerMode === 1) {
       let shuffledDeck = shuffleCards(cards);
       return setGameCards([...shuffledDeck]);
@@ -88,10 +87,10 @@ export default function GameScreen({
   };
 
   // 2. If there is a match
-  const ifMatch = card => {
+  const ifMatch = (card) => {
     const matchMade = new Howl({
       src: ["audio/match.mp3"],
-      volume: 0.25
+      volume: 0.25,
     });
 
     // Doesn't play normal match sound if the match is the Timer
@@ -112,7 +111,7 @@ export default function GameScreen({
   const notMatch = () => {
     let misMatch = new Howl({
       src: ["audio/error.mp3"],
-      volume: 0.35
+      volume: 0.35,
     });
 
     if (currentPlayer === true) {
@@ -127,7 +126,7 @@ export default function GameScreen({
   };
 
   // ** When a card is selected **********************************************************
-  const handleCardSelection = card => {
+  const handleCardSelection = (card) => {
     // Prevents from clicking cards that are already a match
     if (matches.includes(card.name)) {
       return;
@@ -140,7 +139,7 @@ export default function GameScreen({
 
     // Sound for card reveal
     let revealCard = new Howl({
-      src: ["audio/click.mp3"]
+      src: ["audio/click.mp3"],
     });
 
     // Adds a card if no other cards were yet selected
@@ -161,7 +160,7 @@ export default function GameScreen({
         if (card.name === "Timer") {
           let audio = new Howl({
             src: ["audio/time-added.mp3"],
-            volume: 0.5
+            volume: 0.5,
           });
 
           setClockTime(clockTime + 30); // Adds 30 seconds to the clock
@@ -180,7 +179,7 @@ export default function GameScreen({
   const runClock = () => {
     let clockClick = new Howl({
       src: ["audio/clock-click.mp3"],
-      volume: 0.5
+      volume: 0.5,
     });
     // let countdown = new Howl({
     //   src: ["audio/countdown.mp3"],
@@ -192,13 +191,13 @@ export default function GameScreen({
     setStartClock(true);
     let clock = setInterval(
       () =>
-        setClockTime(clockTime => {
+        setClockTime((clockTime) => {
           if (clockTime > 0) {
             return clockTime - 1;
           } else {
             let buzz = new Howl({
               src: ["audio/buzzer.mp3"],
-              volume: 0.35
+              volume: 0.35,
             });
             buzz.play();
             // countdown.stop();
