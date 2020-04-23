@@ -76,7 +76,7 @@ export default function Learn({ learnGame, setLearnGame }) {
             A player on their turn must click the "START" button to start the
             clock. Then immediately begin clicking tiles to reveal them. When
             the clock runs out, either the round is over or the next player
-            goes. They are 8 rounds of action. Good luck!!!
+            goes. There are 8 rounds of action. Good luck!!!
           </p>
 
           <p className="copyright">
