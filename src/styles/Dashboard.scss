@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 @import url("https://use.typekit.net/loc6ewc.css");
 
 #dashboard {
@@ -9,18 +9,19 @@
 
   .header-logo {
     width: 30.5%;
-    margin: .8rem 0;
+    margin: 0.8rem 0;
   }
 
   .scoreboard {
     width: 100%;
     display: flex;
 
-    &-p1, &-p2 {
-      width: 50%; 
-      background-color: #6C7983;
-      color: #9FA7AE;
-      padding: .8rem;
+    &-p1,
+    &-p2 {
+      width: 50%;
+      background-color: #6c7983;
+      color: #9fa7ae;
+      padding: 0.8rem;
       transition-duration: 1s;
 
       h2 {
@@ -28,30 +29,29 @@
       }
 
       .score {
-        font-family: alternate-gothic-no-3-d,sans-serif;
+        font-family: alternate-gothic-no-3-d, sans-serif;
         font-size: 3.25rem;
         font-weight: 100;
         line-height: 3.25rem;
         transition-duration: 1s;
-        
 
         .pts {
           font-size: 1.75rem;
-          margin-left: .5rem;
+          margin-left: 0.5rem;
           transition-duration: 1s;
         }
       }
     }
 
     &-p1 {
-      margin-right: .225rem;
+      margin-right: 0.225rem;
       text-align: left;
       padding-left: 2rem;
       animation: slideRt 1s ease 0s 1 forwards;
     }
 
     &-p2 {
-      margin-left: .225rem;
+      margin-left: 0.225rem;
       text-align: right;
       padding-right: 2rem;
       animation: slideLt 1s ease 0s 1 forwards;
@@ -66,26 +66,26 @@
   .turn-indicators {
     display: flex;
     justify-content: space-between;
-    margin-top: .45rem;
+    margin-top: 0.45rem;
     width: 100%;
-    height: .5rem;
-    
+    height: 0.5rem;
 
-    &-p1, &-p2 {
+    &-p1,
+    &-p2 {
       width: 50%;
-      height: 100%;   
+      height: 100%;
     }
 
     &-p1 {
-      margin-right: .225rem;
+      margin-right: 0.225rem;
       background-color: $coral;
     }
 
     &-p2 {
-      margin-left: .225rem;
+      margin-left: 0.225rem;
       background-color: $blue;
     }
-    
+
     /* Grays out color for indicator */
     .inactive {
       background-color: $gray !important;
@@ -98,8 +98,8 @@
     height: $clock-size;
     min-width: 108px;
     min-height: 108px;
-    border: .45rem solid #fff;
-    box-shadow: inset 0px 0px 0px 6px #6C7983;
+    border: 0.45rem solid #fff;
+    box-shadow: inset 0px 0px 0px 6px #6c7983;
     border-radius: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-64%);
@@ -109,7 +109,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: alternate-gothic-no-3-d,sans-serif;
+    font-family: alternate-gothic-no-3-d, sans-serif;
     font-size: 2rem;
   }
 
@@ -120,7 +120,7 @@
   .start {
     z-index: 10;
     background-color: $green;
-    box-shadow: inset 0px 0px 0px 6px #6C7983;
+    box-shadow: inset 0px 0px 0px 6px #6c7983;
 
     &:hover {
       cursor: pointer;
@@ -129,8 +129,16 @@
 }
 
 .shake {
-  animation: shaker 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shaker 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
+}
+
+.clock-shake {
+  animation: clockShaker 0.6s cubic-bezier(0.96, 0.07, 0.19, 0.97) 0s 5 both;
+  // transform: scale(1);
+  // border: 0.45rem solid $green !important;
+  background-color: $black !important;
+  color: #fff !important;
 }
 
 /*** Animations ***/
@@ -158,20 +166,53 @@
 
 /* Shakes score */
 @keyframes shaker {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Shakes clock */
+@keyframes clockShaker {
+  10%,
+  90% {
+    width: $clock-size + 3vh;
+    height: $clock-size + 3vh;
+  }
+
+  20%,
+  80% {
+    width: $clock-size;
+    height: $clock-size;
+  }
+
+  30%,
+  50%,
+  70% {
+    width: $clock-size + 1vh;
+    height: $clock-size + 1vh;
+  }
+
+  40%,
+  60% {
+    width: $clock-size + 6vh;
+    height: $clock-size + 6vh;
   }
 }
 
@@ -190,15 +231,12 @@
   .start {
     font-size: 1.75rem !important;
   }
-
-  
 }
-
 
 @media (max-height: 850px) {
   .scoreboard {
-    &-p1, &-p2 {
-
+    &-p1,
+    &-p2 {
       h2 {
         font-size: 1rem !important;
       }
@@ -209,7 +247,7 @@
 
         .pts {
           font-size: 1.5rem !important;
-          margin-left: .25rem !important;
+          margin-left: 0.25rem !important;
         }
       }
     }
@@ -217,7 +255,7 @@
     &-p1 {
       padding-left: 1rem !important;
     }
-    
+
     &-p2 {
       padding-right: 1rem !important;
     }

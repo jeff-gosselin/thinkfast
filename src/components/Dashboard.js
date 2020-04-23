@@ -9,7 +9,8 @@ export default function Dashboard({
   startClock,
   runClock,
   clockTime,
-  shake
+  shake,
+  timeAdded,
 }) {
   return (
     <div id="dashboard">
@@ -53,9 +54,11 @@ export default function Dashboard({
       <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>
         START
       </div>
-      <div className="clock">{`${Math.floor(clockTime / 60)}:${
-        Math.floor(clockTime % 60) < 10 ? "0" : ""
-      }${Math.floor(clockTime % 60)}`}</div>
+      <div className={timeAdded ? "clock clock-shake" : "clock"}>{`${Math.floor(
+        clockTime / 60
+      )}:${Math.floor(clockTime % 60) < 10 ? "0" : ""}${Math.floor(
+        clockTime % 60
+      )}`}</div>
     </div>
   );
 }

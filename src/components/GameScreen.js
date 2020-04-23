@@ -40,6 +40,7 @@ export default function GameScreen({
   // Clock
   const [startClock, setStartClock] = useState(false);
   const [clockTime, setClockTime] = useState(roundTime);
+  const [timeAdded, setTimeAdded] = useState(false);
 
   // Rounds
   const [round, setRound] = useState(1);
@@ -164,7 +165,7 @@ export default function GameScreen({
           });
 
           setClockTime(clockTime + 30); // Adds 30 seconds to the clock
-
+          setTimeAdded(true); // initiates clock animation
           audio.play();
         }
         ifMatch(card); // Adds points to player's score
@@ -200,7 +201,7 @@ export default function GameScreen({
               volume: 0.35,
             });
             buzz.play();
-            // countdown.stop();
+            setTimeAdded(false);
             setMatches([]);
             setCardChoices([]);
 
@@ -242,6 +243,7 @@ export default function GameScreen({
         runClock={runClock}
         clockTime={clockTime}
         shake={shake}
+        timeAdded={timeAdded}
       />
       <Cards
         gameCards={gameCards}

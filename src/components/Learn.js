@@ -44,7 +44,7 @@ export default function Learn({ learnGame, setLearnGame }) {
 
             <div className="points-info-p">
               <h4>The Timer</h4>
-              <p>Adds 30 seconds to the clock</p>
+              <p>Adds 30 seconds to the clock and worth 2 points</p>
             </div>
           </div>
 
@@ -77,6 +77,10 @@ export default function Learn({ learnGame, setLearnGame }) {
             clock. Then immediately begin clicking tiles to reveal them. When
             the clock runs out, either the round is over or the next player
             goes. They are 8 rounds of action. Good luck!!!
+          </p>
+
+          <p className="copyright">
+            &copy; ThinkFast 2020, created by Jeff Gosselin.
           </p>
         </div>
       </div>
