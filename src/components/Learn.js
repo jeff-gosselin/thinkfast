@@ -66,9 +66,31 @@ export default function Learn({ learnGame, setLearnGame }) {
             </div>
           </div>
 
+          <div className="points-info">
+            <img className="wildcard" src="card-svgs/question.svg" alt="" />
+
+            <div className="points-info-p">
+              <h4>The Wildcard</h4>
+              <p>Worth as much as your previous match</p>
+            </div>
+          </div>
+
+          <div className="points-info">
+            <img src="card-svgs/double.svg" alt="" />
+
+            <div className="points-info-p">
+              <h4>The Doubler</h4>
+              <p>Worth double the points of your previous match</p>
+            </div>
+          </div>
+
           <p className="deduct">
             It is worth noting that everytime you select 2 tiles and fail to get
             a match, you are deducted a point.
+          </p>
+
+          <p className="deduct">
+            * Tip - Use special tile matches in combination to maximize points.
           </p>
 
           <h3 className="gameplay">Game Play:</h3>

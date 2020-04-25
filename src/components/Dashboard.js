@@ -4,6 +4,7 @@ import "../styles/Dashboard.scss";
 
 export default function Dashboard({
   currentPlayer,
+  round,
   player1Score,
   player2Score,
   startClock,
@@ -54,11 +55,12 @@ export default function Dashboard({
       <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>
         START
       </div>
-      <div className={timeAdded ? "clock clock-shake" : "clock"}>{`${Math.floor(
-        clockTime / 60
-      )}:${Math.floor(clockTime % 60) < 10 ? "0" : ""}${Math.floor(
-        clockTime % 60
-      )}`}</div>
+      <div className={timeAdded ? "clock clock-shake" : "clock"}>
+        <h5 className="round-text">Round {round}</h5>
+        {`${Math.floor(clockTime / 60)}:${
+          Math.floor(clockTime % 60) < 10 ? "0" : ""
+        }${Math.floor(clockTime % 60)}`}
+      </div>
     </div>
   );
 }

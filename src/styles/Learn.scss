@@ -8,6 +8,7 @@
   color: rgba($black, 0.85);
   text-align: center;
   padding: 2rem 3rem;
+  opacity: 1;
   transition: all 1s cubic-bezier(0.2, 0.67, 0.19, 0.97);
   overflow: auto;
 
@@ -101,11 +102,24 @@
   opacity: 0.85;
 }
 
-.scientist {
+.scientist,
+.wildcard {
   transform: scale(0.85);
   opacity: 0.85;
 }
 
 .hide {
   margin-top: 100vh;
+  // opacity: 0;
+  animation: hider 1s cubic-bezier(0.2, 0.67, 0.19, 0.97) 0.75s 1 both;
+}
+
+@keyframes hider {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

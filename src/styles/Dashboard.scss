@@ -107,10 +107,16 @@
     transition-duration: 1s;
     color: #fff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: alternate-gothic-no-3-d, sans-serif;
-    font-size: 2rem;
+    font-size: 1.9rem;
+
+    .round-text {
+      font-size: 0.7rem;
+      font-family: azo-sans-web, sans-serif;
+    }
   }
 
   .hide {

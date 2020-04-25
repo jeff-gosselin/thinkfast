@@ -133,15 +133,15 @@ export const cards = [
   },
   {
     id: 23,
-    name: "Orbit",
-    url: "orbit.svg",
-    pts: 4,
+    name: "Doubler",
+    url: "double.svg",
+    pts: 2,
   },
   {
     id: 24,
-    name: "Orbit",
-    url: "orbit.svg",
-    pts: 4,
+    name: "Doubler",
+    url: "double.svg",
+    pts: 2,
   },
   {
     id: 25,
@@ -157,14 +157,14 @@ export const cards = [
   },
   {
     id: 27,
-    name: "Sun",
-    url: "sun.svg",
-    pts: 4,
+    name: "Wildcard",
+    url: "question.svg",
+    pts: 2,
   },
   {
     id: 28,
-    name: "Sun",
-    url: "sun.svg",
-    pts: 4,
+    name: "Wildcard",
+    url: "question.svg",
+    pts: 2,
   },
 ];

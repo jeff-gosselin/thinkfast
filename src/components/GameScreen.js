@@ -48,6 +48,7 @@ export default function GameScreen({
   // Current points scored
   const [shake, setShake] = useState(false);
   const [points, setPoints] = useState(0);
+  const [bonusPoints, setBonusPoints] = useState(0);
 
   ////////////////////////////////////////////////////////////////////
 
@@ -76,6 +77,57 @@ export default function GameScreen({
 
   ////////////////////////////////////////////////////////////////////
 
+  // SPECIAL TILES **************************************************
+  const timerTile = () => {
+    let audio = new Howl({
+      src: ["audio/time-added.mp3"],
+      volume: 0.5,
+    });
+
+    setClockTime(clockTime + 30); // Adds 30 seconds to the clock
+    setTimeAdded(true); // initiates clock animation
+    audio.play();
+  };
+
+  const bonusTile = (card) => {
+    if (matches.length === 0) {
+      return card.pts;
+    }
+    // Checks what the last match was worth
+    if (matches[0] === "Wildcard" || matches[0] === "Doubler") {
+      if (card.name === "Wildcard") {
+        return bonusPoints; // State that stored what last matched bonus tile was worth
+      }
+
+      if (card.name === "Doubler") {
+        return bonusPoints * 2; // State that stored what last matched bonus tile was worth
+      }
+    } else {
+      let lastMatch = gameCards.filter((gameCard) => {
+        return gameCard.name === matches[0];
+      });
+
+      if (card.name === "Wildcard") {
+        return lastMatch[0].pts;
+      }
+
+      if (card.name === "Doubler") {
+        return lastMatch[0].pts * 2;
+      }
+    }
+  };
+
+  // SPECIAL TILES ABOVE **************************************************
+
+  // Scoring
+  const addToScore = (points) => {
+    if (currentPlayer === true) {
+      setPlayer1Score(player1Score + points);
+    } else {
+      setPlayer2Score(player2Score + points);
+    }
+  };
+
   // ** What happens after 2 cards are picked
   // 1. Checks for a match
   const checkMatch = (card1, card2) => {
@@ -89,23 +141,37 @@ export default function GameScreen({
 
   // 2. If there is a match
   const ifMatch = (card) => {
+    // Set sound for match
     const matchMade = new Howl({
       src: ["audio/match.mp3"],
       volume: 0.25,
     });
 
-    // Doesn't play normal match sound if the match is the Timer
+    let tilePoints;
+
+    // Doesn't play this normal match sound if the match is the Timer
     card.name !== "Timer" && matchMade.play();
 
-    if (currentPlayer === true) {
-      setPlayer1Score(player1Score + card.pts);
+    // Check for type of match... bonus tiles or regular match
+    if (card.name === "Wildcard") {
+      addToScore(bonusTile(card));
+      tilePoints = bonusTile(card);
+      setBonusPoints(tilePoints); // Stores the points scored by the bonus tile
+      if (matches[0] === "Timer") {
+        timerTile();
+      }
+    } else if (card.name === "Doubler") {
+      addToScore(bonusTile(card));
+      tilePoints = bonusTile(card);
+      setBonusPoints(tilePoints); // Stores the points scored by the bonus tile
     } else {
-      setPlayer2Score(player2Score + card.pts);
+      addToScore(card.pts);
+      tilePoints = card.pts;
     }
 
     setMatches([card.name, ...matches]);
-    setPoints(card.pts);
-    setTimeout(() => setCardChoices([]), 1000);
+    setPoints(tilePoints); // Displays current points a match gives
+    setTimeout(() => setCardChoices([]), 1000); // Flips tiles back to hidden
   };
 
   // 3. If there is not a match
@@ -115,13 +181,12 @@ export default function GameScreen({
       volume: 0.35,
     });
 
-    if (currentPlayer === true) {
-      setPlayer1Score(player1Score - 1);
-    } else {
-      setPlayer2Score(player2Score - 1);
-    }
+    addToScore(-1);
+
+    // Triggers display of "-1" on screen
     setPoints(-1);
 
+    // Tiles are flipped over to hide them
     setTimeout(() => setCardChoices([]), 1000);
     misMatch.play();
   };
@@ -147,6 +212,7 @@ export default function GameScreen({
     if (cardChoices.length === 0) {
       revealCard.play();
       setCardChoices([card]);
+      setTimeAdded(false);
     }
 
     // When 2nd card selection is made... checks if same card was not selected twice before adding
@@ -159,14 +225,7 @@ export default function GameScreen({
       if (match) {
         // If player gets the "Timer" match... 30 seconds are added to the clock
         if (card.name === "Timer") {
-          let audio = new Howl({
-            src: ["audio/time-added.mp3"],
-            volume: 0.5,
-          });
-
-          setClockTime(clockTime + 30); // Adds 30 seconds to the clock
-          setTimeAdded(true); // initiates clock animation
-          audio.play();
+          timerTile();
         }
         ifMatch(card); // Adds points to player's score
       } else {
@@ -237,6 +296,7 @@ export default function GameScreen({
       {cardChoices.length > 1 ? <Points cardPoints={points} /> : null}
       <Dashboard
         currentPlayer={currentPlayer}
+        round={round}
         player1Score={player1Score}
         player2Score={player2Score}
         startClock={startClock}
