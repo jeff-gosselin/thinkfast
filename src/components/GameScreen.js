@@ -187,7 +187,7 @@ export default function GameScreen({
     setPoints(-1);
 
     // Tiles are flipped over to hide them
-    setTimeout(() => setCardChoices([]), 1000);
+    setTimeout(() => setCardChoices([]), 800);
     misMatch.play();
   };
 
