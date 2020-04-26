@@ -36,7 +36,7 @@ export default function Learn({ learnGame, setLearnGame }) {
           <h3>Scoring:</h3>
           <p>
             Most of the tiles that you match in the game are worth 4 points, but
-            there are a few special tiles that are special...
+            there are a few tiles that are special...
           </p>
 
           <div className="points-info">
