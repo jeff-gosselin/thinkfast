@@ -21,7 +21,12 @@ export default function Card({
         <CardBackImg class="back-img" />
       </div>
       <div className="front">
-        <img width="60%" src={`card-svgs/${gameCard.url}`} alt="" />
+        <img
+          className="noselect"
+          width="60%"
+          src={`card-svgs/${gameCard.url}`}
+          alt=""
+        />
       </div>
     </div>
   );

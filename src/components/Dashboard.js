@@ -17,7 +17,7 @@ export default function Dashboard({
     <div id="dashboard">
       <LogoText className="header-logo" />
 
-      <div className="scoreboard">
+      <div className="scoreboard noselect">
         <div className={currentPlayer ? "scoreboard-p1 turn" : "scoreboard-p1"}>
           <h2>PLAYER 1</h2>
           <h3 className={shake && currentPlayer ? "score shake" : "score"}>
@@ -55,8 +55,10 @@ export default function Dashboard({
       <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>
         START
       </div>
-      <div className={timeAdded ? "clock clock-shake" : "clock"}>
-        <h5 className="round-text">Round {round}</h5>
+      <div
+        className={timeAdded ? "clock noselect clock-shake" : "clock noselect"}
+      >
+        <h5 className="round-text">Round {Math.floor(round)}</h5>
         {`${Math.floor(clockTime / 60)}:${
           Math.floor(clockTime % 60) < 10 ? "0" : ""
         }${Math.floor(clockTime % 60)}`}
