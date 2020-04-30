@@ -12,79 +12,93 @@
   text-align: center;
   transition-duration: 1s;
   opacity: 0;
-  animation: displayMenu 1s ease .5s 1 forwards;
+  animation: displayMenu 1s ease 0.5s 1 forwards;
 
   h2 {
     color: $gray;
     font-size: 1.8rem;
     width: 100%;
     margin-bottom: 1.25rem;
-    letter-spacing: .125rem;
+    letter-spacing: 0.125rem;
     transition-duration: 1s;
   }
 
-  .player-menu-btn-one, .player-menu-btn-two {
-    padding: .75rem .25rem .5rem;
-    margin: .9rem 0;
-    color: #ffffff;
-    font-family: alternate-gothic-no-3-d,sans-serif;
+  .player-menu-btn-one,
+  .player-menu-btn-two,
+  .player-menu-btn-three {
+    padding: 0.35rem 0.25rem 0.15rem;
+    margin: 1rem 0;
+    font-family: alternate-gothic-no-3-d, sans-serif;
     font-weight: 400;
-    font-size: 1.85rem;
-    border: none;
+    font-size: 1.75rem;
     border-radius: 30px;
     width: 90%;
-    transition-duration: 1s;
+    transition-duration: 0.75s;
   }
 
   .player-menu-btn-one {
     background-color: $coral;
+    color: #ffffff;
+    border: 3px solid $coral;
   }
 
   .player-menu-btn-two {
     background-color: $blue;
+    color: #ffffff;
+    border: 3px solid $blue;
   }
 
-  .player-menu-btn-one:hover, .player-menu-btn-two:hover {
+  .player-menu-btn-three {
+    background-color: transparent;
+    border: 3px solid $gray;
+    color: $gray;
+  }
+
+  .player-menu-btn-one:hover,
+  .player-menu-btn-two:hover,
+  .player-menu-btn-three:hover {
     cursor: pointer;
+    background-color: $black;
+    border: 3px solid $black;
+    color: #fff;
   }
 }
 
-
 /* Adjust menu for height */
 @media (max-height: 930px) {
-
   .player-menu {
     margin: 6rem 0 0;
 
     h2 {
       font-size: 1.4rem !important;
     }
-    .player-menu-btn-one, .player-menu-btn-two {
+    .player-menu-btn-one,
+    .player-menu-btn-two,
+    .player-menu-btn-three {
       font-size: 1.35rem !important;
-      margin: .4rem 0 !important;
+      margin: 0.5rem 0 !important;
     }
   }
-  
 }
 
 /* Adjust menu for width */
 @media (max-width: 600px) {
-
   .player-menu {
     h2 {
       font-size: 1.4rem !important;
     }
-    .player-menu-btn-one, .player-menu-btn-two {
+    .player-menu-btn-one,
+    .player-menu-btn-two,
+    .player-menu-btn-three {
       font-size: 1.35rem !important;
-      margin: .5rem 0 !important;
+      margin: 0.5rem 0 !important;
     }
   }
-  
 }
 
 /* Animations */
 .menu-appear {
-  animation: displayMenu 1s ease .5s 1 forwards;
+  animation: displayMenu 1s ease 0.5s 1 forwards;
 }
 
 .menu-vanish {
@@ -107,7 +121,6 @@
   0% {
     opacity: 1;
     transform: translateY(0rem);
-    
   }
 
   100% {
@@ -115,4 +128,3 @@
     transform: translateY(10rem);
   }
 }
-

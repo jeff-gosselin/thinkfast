@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Logo from "./components/Logo";
 import SelectPlayers from "./components/SelectPlayers";
 import GameScreen from "./components/GameScreen";
 import EndGame from "./components/EndGame";
 import Learn from "./components/Learn";
+import HighScores from "./components/HighScores";
 
 import "./styles/App.scss";
 
@@ -17,7 +18,10 @@ export default function App() {
   const [player1Score, setPlayer1Score] = useState(0);
   const [player2Score, setPlayer2Score] = useState(0);
 
-  // Toggles Game Instructions
+  // Toggles High Scores page
+  const [highScoresPage, setHighScoresPage] = useState(false);
+
+  // Toggles Game Instructions page
   const [learnGame, setLearnGame] = useState(false);
 
   // Determines if game ends
@@ -32,6 +36,10 @@ export default function App() {
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
   }
+
+  useEffect(() => {
+    console.log("Blah!");
+  }, []);
 
   return (
     <div id="App">
@@ -48,7 +56,11 @@ export default function App() {
       ) : null}
       <div id="start-screen" className={playerMode !== null ? null : null}>
         <Logo playerMode={playerMode} />
-        <SelectPlayers gameMode={gameMode} playerMode={playerMode} />
+        <SelectPlayers
+          gameMode={gameMode}
+          playerMode={playerMode}
+          setHighScoresPage={setHighScoresPage}
+        />
       </div>
       {playerMode !== null && !isEnd ? (
         <GameScreen
@@ -70,6 +82,10 @@ export default function App() {
         </div>
       ) : null}
 
+      <HighScores
+        highScoresPage={highScoresPage}
+        setHighScoresPage={setHighScoresPage}
+      />
       <Learn learnGame={learnGame} setLearnGame={setLearnGame} />
     </div>
   );

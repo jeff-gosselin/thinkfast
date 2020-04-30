@@ -1,7 +1,11 @@
 import React from "react";
 import "../styles/SelectPlayers.scss";
 
-export default function SelectPlayers({ gameMode, playerMode }) {
+export default function SelectPlayers({
+  gameMode,
+  playerMode,
+  setHighScoresPage,
+}) {
   return (
     <div
       className={
@@ -10,12 +14,17 @@ export default function SelectPlayers({ gameMode, playerMode }) {
           : "player-menu menu-appear"
       }
     >
-      <h2>SELECT MODE</h2>
-      <button onClick={e => gameMode(e, 1)} className="player-menu-btn-one">
+      <button onClick={(e) => gameMode(e, 1)} className="player-menu-btn-one">
         SINGLE PLAYER
       </button>
-      <button onClick={e => gameMode(e, 2)} className="player-menu-btn-two">
+      <button onClick={(e) => gameMode(e, 2)} className="player-menu-btn-two">
         TWO PLAYER
+      </button>
+      <button
+        onClick={() => setHighScoresPage(true)}
+        className="player-menu-btn-three"
+      >
+        HIGH SCORES
       </button>
     </div>
   );

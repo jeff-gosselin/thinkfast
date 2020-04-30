@@ -22,7 +22,7 @@ export default function Learn({ learnGame, setLearnGame }) {
       </div>
 
       <div className="learn-content">
-        <h2>GAME INSTRUCTIONS</h2>
+        <h2>HOW TO PLAY</h2>
 
         <div className="learn-content-section">
           <h3>Synopsis:</h3>
