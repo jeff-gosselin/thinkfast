@@ -9,7 +9,7 @@ export default function EndGame({
   player1Score,
   setPlayer1Score,
   player2Score,
-  setPlayer2Score
+  setPlayer2Score,
 }) {
   const restart = () => {
     setIsEnd(false);
@@ -29,7 +29,7 @@ export default function EndGame({
       );
     }
 
-    if (playerMode === 1 && (player1Score > 0 && player1Score <= 25)) {
+    if (playerMode === 1 && player1Score > 0 && player1Score <= 25) {
       return (
         <div className="farewell-message">
           <h1>You need a lot more practice!</h1>
@@ -38,7 +38,7 @@ export default function EndGame({
       );
     }
 
-    if (playerMode === 1 && (player1Score > 25 && player1Score <= 50)) {
+    if (playerMode === 1 && player1Score > 25 && player1Score <= 50) {
       return (
         <div className="farewell-message">
           <h1>You are not too bad at this!</h1>
@@ -71,8 +71,9 @@ export default function EndGame({
         <div className="farewell-message">
           <h1>Player 1</h1>
           <h2>wins the game!!</h2>
-          <p>{`Beating the competition by ${player1Score -
-            player2Score} points.`}</p>
+          <p>{`Beating the competition by ${
+            player1Score - player2Score
+          } points.`}</p>
         </div>
       );
     }
@@ -82,8 +83,9 @@ export default function EndGame({
         <div className="farewell-message">
           <h1>Player 2</h1>
           <h2>wins the game!!</h2>
-          <p>{`Beating the competition by ${player2Score -
-            player1Score} points.`}</p>
+          <p>{`Beating the competition by ${
+            player2Score - player1Score
+          } points.`}</p>
         </div>
       );
     }

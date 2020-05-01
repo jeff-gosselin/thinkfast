@@ -50,7 +50,15 @@ export default function HighScores({
       <div className="learn-content">
         <h2>HIGH SCORES</h2>
       </div>
-      <ul className="scores-table">{scores}</ul>
+      <ul className="scores-table">
+        <li className="score-row">
+          <div className="score-header"></div>
+          <div className="score-header">Name</div>
+          <div className="score-header">Score</div>
+          <div className="score-header">Date</div>
+        </li>
+        {scores}
+      </ul>
     </div>
   );
 }

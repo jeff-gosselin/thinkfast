@@ -88,6 +88,7 @@ export default function App() {
           player2Score={player2Score}
           setPlayer2Score={setPlayer2Score}
           setIsEnd={setIsEnd}
+          highScores={highScores}
         />
       ) : null}
 

@@ -22,6 +22,7 @@ export default function GameScreen({
   player2Score,
   setPlayer2Score,
   setIsEnd,
+  highScores,
 }) {
   // Time for each round
   let roundTime = 60;
@@ -281,10 +282,22 @@ export default function GameScreen({
     );
   };
 
+  // Check if a high score has been made at the end of game and if so display specific input screen
+  const checkHighScore = () => {
+    if (player1Score > highScores[9] && player2Score > highScores[9]) {
+      // set state where input screen for both players will appear over end screen
+    } else if (player1Score > highScores[9]) {
+      // set state where input screen for player 1 will appear over end screen
+    } else if (player2Score > highScores[9]) {
+      // set state where input screen for player 2 will appear over end screen
+    }
+  };
+
   // End of Game
   const gameOver = () => {
     setIsEnd(true);
     Howler.unload();
+    // checkHighScore();
   };
 
   return (
