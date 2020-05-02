@@ -23,6 +23,8 @@ export default function GameScreen({
   setPlayer2Score,
   setIsEnd,
   highScores,
+  nameForPlayer1,
+  nameForPlayer2,
 }) {
   // Time for each round
   let roundTime = 60;
@@ -284,11 +286,14 @@ export default function GameScreen({
 
   // Check if a high score has been made at the end of game and if so display specific input screen
   const checkHighScore = () => {
-    if (player1Score > highScores[9] && player2Score > highScores[9]) {
+    if (
+      player1Score > highScores[9].score &&
+      player2Score > highScores[9].score
+    ) {
       // set state where input screen for both players will appear over end screen
-    } else if (player1Score > highScores[9]) {
+    } else if (player1Score > highScores[9].score) {
       // set state where input screen for player 1 will appear over end screen
-    } else if (player2Score > highScores[9]) {
+    } else if (player2Score > highScores[9].score) {
       // set state where input screen for player 2 will appear over end screen
     }
   };
@@ -312,6 +317,8 @@ export default function GameScreen({
         round={round}
         player1Score={player1Score}
         player2Score={player2Score}
+        nameForPlayer1={nameForPlayer1}
+        nameForPlayer2={nameForPlayer2}
         startClock={startClock}
         runClock={runClock}
         clockTime={clockTime}

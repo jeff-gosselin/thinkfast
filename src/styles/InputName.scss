@@ -1,0 +1,56 @@
+@import "./variables";
+
+.input-box {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+
+  &::placeholder {
+    color: rgba($gray, 0.925);
+  }
+
+  &:focus {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.box-1 {
+  border: 2px solid rgba($coral, 0.2);
+  color: $coral;
+
+  &:focus {
+    border-bottom: 2px solid rgba($coral, 0.5);
+  }
+}
+
+.box-2 {
+  border: 2px solid rgba($blue, 0.2);
+  color: $blue;
+
+  &:focus {
+    border-bottom: 2px solid rgba($blue, 0.5);
+  }
+}
+
+.start-btn {
+  padding: 0.4rem 0.25rem 0.15rem;
+  margin: 1rem 0;
+  font-family: alternate-gothic-no-3-d, sans-serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  border-radius: 30px;
+  width: 90%;
+  background-color: $green;
+  color: #ffffff;
+  border: 3px solid $green;
+  transition-duration: 0.75s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $black;
+    border: 3px solid $black;
+  }
+}

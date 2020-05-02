@@ -7,6 +7,8 @@ export default function Dashboard({
   round,
   player1Score,
   player2Score,
+  nameForPlayer1,
+  nameForPlayer2,
   startClock,
   runClock,
   clockTime,
@@ -19,7 +21,7 @@ export default function Dashboard({
 
       <div className="scoreboard noselect">
         <div className={currentPlayer ? "scoreboard-p1 turn" : "scoreboard-p1"}>
-          <h2>PLAYER 1</h2>
+          <h2>{nameForPlayer1}</h2>
           <h3 className={shake && currentPlayer ? "score shake" : "score"}>
             {player1Score}
             <span className="pts">pts</span>
@@ -29,7 +31,7 @@ export default function Dashboard({
         <div
           className={!currentPlayer ? "scoreboard-p2 turn" : "scoreboard-p2"}
         >
-          <h2>PLAYER 2</h2>
+          <h2>{nameForPlayer2 !== "" ? nameForPlayer2 : "PLAYER 2"}</h2>
           <h3 className={shake && !currentPlayer ? "score shake" : "score"}>
             {player2Score}
             <span className="pts">pts</span>
