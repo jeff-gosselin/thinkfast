@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Howl } from "howler";
 
 import "../styles/EndGame.scss";
 
@@ -18,7 +19,10 @@ export default function EndGame({
   getAndSetHighScores,
 }) {
   const [isHighScore, setIsHighScore] = useState([]); // When true will notify of new high score
-
+  let end = new Howl({
+    src: ["audio/end.mp3"],
+    volume: 0.5,
+  });
   // API REQUEST FUNCTIONS
   const eliminateScorerFromTopTen = (scorerId) => {
     axios
@@ -59,6 +63,7 @@ export default function EndGame({
     );
 
     setIsHighScore([...whoMadeTheTopTen]);
+    end.play();
 
     if (postScores(whoMadeTheTopTen) === 2) {
       console.log("Delete:", tempScores[10], tempScores[11]);
@@ -115,10 +120,12 @@ export default function EndGame({
       eliminateScorerFromTopTen(highScores[9]._id);
       postHighScoreToTopTen(p1);
       setIsHighScore([p1]);
+      end.play();
     } else if (player2Score > highScores[9].score) {
       eliminateScorerFromTopTen(highScores[9]._id);
       postHighScoreToTopTen(p2);
       setIsHighScore([p2]);
+      end.play();
     }
   }, [nameForPlayer1]);
 
@@ -140,6 +147,15 @@ export default function EndGame({
     endOfGameMessage = (
       <div className="farewell-message">
         <h1>You are such a negative person!</h1>
+        <p>{`You scored ${player1Score} points.`}</p>
+      </div>
+    );
+  }
+
+  if (playerMode === 1 && player1Score === 0) {
+    endOfGameMessage = (
+      <div className="farewell-message">
+        <h1>You thought you were a hero, but then got zero!</h1>
         <p>{`You scored ${player1Score} points.`}</p>
       </div>
     );
