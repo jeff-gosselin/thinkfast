@@ -76,7 +76,6 @@ export default function App() {
   function prepStartGame(e) {
     e.preventDefault();
     let inputCheck = /^[a-z]+$/i;
-    let inputMessage = "";
 
     if (playerMode === 1) {
       let inputTest = inputCheck.test(nameForPlayer1);

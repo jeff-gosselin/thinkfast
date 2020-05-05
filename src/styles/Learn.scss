@@ -11,6 +11,7 @@
   opacity: 1;
   transition: all 1s cubic-bezier(0.2, 0.67, 0.19, 0.97);
   overflow: auto;
+  z-index: 9999;
 
   &-section {
     display: flex;
