@@ -17,8 +17,8 @@ export default function InputName({
   nameForPlayer1,
   setNameForPlayer2,
   nameForPlayer2,
+  inputError,
 }) {
-  console.log("NAME:", nameForPlayer1);
   return (
     <div className={inputNamePage ? "learn" : "learn hide"}>
       <div className="learn-section">
@@ -30,6 +30,9 @@ export default function InputName({
         <div>
           <div className="learn-content">
             <h2>Enter Name Below</h2>
+            {inputError ? (
+              <p className="input-error">Names must have letters only.</p>
+            ) : null}
           </div>
           <form onSubmit={prepStartGame}>
             <input
@@ -38,6 +41,7 @@ export default function InputName({
               type="text"
               placeholder="Name for Player 1"
               value={nameForPlayer1}
+              maxlength="14"
             />
             <button className="start-btn">START GAME</button>
           </form>
@@ -46,6 +50,9 @@ export default function InputName({
         <div>
           <div className="learn-content">
             <h2>Enter Names Below</h2>
+            {inputError ? (
+              <p className="input-error">Names must have letters only.</p>
+            ) : null}
           </div>
           <form onSubmit={prepStartGame}>
             <input
@@ -54,6 +61,7 @@ export default function InputName({
               type="text"
               placeholder="Name for Player 1"
               value={nameForPlayer1}
+              maxlength="14"
             />
             <input
               onChange={(e) => setNameForPlayer2(e.target.value)}
@@ -61,6 +69,7 @@ export default function InputName({
               type="text"
               placeholder="Name for Player 2"
               value={nameForPlayer2}
+              maxlength="14"
             />
             <button className="start-btn">START GAME</button>
           </form>

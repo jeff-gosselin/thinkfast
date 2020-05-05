@@ -23,11 +23,13 @@ export default function GameScreen({
   setPlayer2Score,
   setIsEnd,
   highScores,
+  setHighScores,
   nameForPlayer1,
   nameForPlayer2,
+  setStartGame,
 }) {
   // Time for each round
-  let roundTime = 60;
+  let roundTime = 25;
 
   // Master Volume
   Howler.volume(0.85);
@@ -284,30 +286,16 @@ export default function GameScreen({
     );
   };
 
-  // Check if a high score has been made at the end of game and if so display specific input screen
-  const checkHighScore = () => {
-    if (
-      player1Score > highScores[9].score &&
-      player2Score > highScores[9].score
-    ) {
-      // set state where input screen for both players will appear over end screen
-    } else if (player1Score > highScores[9].score) {
-      // set state where input screen for player 1 will appear over end screen
-    } else if (player2Score > highScores[9].score) {
-      // set state where input screen for player 2 will appear over end screen
-    }
-  };
-
   // End of Game
   const gameOver = () => {
     setIsEnd(true);
+    setStartGame(false);
     Howler.unload();
-    // checkHighScore();
   };
 
   return (
     <div id="game-screen">
-      {Math.floor(round) > 8 ? gameOver() : null}
+      {Math.floor(round) > 1 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}

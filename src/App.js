@@ -34,6 +34,9 @@ export default function App() {
   // Toggles Game Instructions page
   const [learnGame, setLearnGame] = useState(false);
 
+  // Toggles input error message
+  const [inputError, setInputError] = useState(false);
+
   // Determines if game begins
   const [startGame, setStartGame] = useState(false);
 
@@ -43,17 +46,22 @@ export default function App() {
   ///////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
+    getAndSetHighScores(setHighScores);
+  }, []);
+
+  /////////////////////////////////////////////////////////////////////////////
+  const getAndSetHighScores = (setStateFunction) => {
     axios
       .get("https://thinkfast-api.herokuapp.com/scores")
       .then((response) => {
-        setHighScores([...response.data]);
+        setStateFunction([...response.data]);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  };
 
-  /////////////////////////////////////////////////////////////////////////////
+  // Perfoms action based on single or two player mode
   function gameMode(e, players) {
     let theme = new Howl({
       src: ["audio/theme.mp3"],
@@ -62,22 +70,36 @@ export default function App() {
     });
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
-    setInputNamePage(true);
+    setInputNamePage(true); // Displays Name Input Page
   }
 
   function prepStartGame(e) {
-    // let theme = new Howl({
-    //   src: ["audio/theme.mp3"],
-    //   volume: 0.2,
-    //   loop: true,
-    // });
-    // theme.play();
     e.preventDefault();
-    setInputNamePage(false);
-    setStartGame(true);
+    let inputCheck = /^[a-z]+$/i;
+    let inputMessage = "";
+
+    if (playerMode === 1) {
+      let inputTest = inputCheck.test(nameForPlayer1);
+      if (inputTest) {
+        setInputNamePage(false);
+        setStartGame(true);
+      } else {
+        setInputError(true);
+      }
+    }
+
+    if (playerMode === 2) {
+      let inputTest1 = inputCheck.test(nameForPlayer1);
+      let inputTest2 = inputCheck.test(nameForPlayer2);
+      if (inputTest1 && inputTest2) {
+        setInputNamePage(false);
+        setStartGame(true);
+      } else {
+        setInputError(true);
+      }
+    }
   }
 
-  console.log(highScores);
   return (
     <div id="App">
       {isEnd ? (
@@ -85,10 +107,15 @@ export default function App() {
           setIsEnd={setIsEnd}
           playerMode={playerMode}
           setPlayerMode={setPlayerMode}
+          nameForPlayer1={nameForPlayer1}
+          nameForPlayer2={nameForPlayer2}
           player1Score={player1Score}
           setPlayer1Score={setPlayer1Score}
           player2Score={player2Score}
           setPlayer2Score={setPlayer2Score}
+          highScores={highScores}
+          setHighScores={setHighScores}
+          getAndSetHighScores={getAndSetHighScores}
         />
       ) : null}
       <div id="start-screen">
@@ -108,6 +135,7 @@ export default function App() {
         setNameForPlayer2={setNameForPlayer2}
         nameForPlayer2={nameForPlayer2}
         prepStartGame={prepStartGame}
+        inputError={inputError}
       />
 
       {startGame && !isEnd ? (
@@ -122,6 +150,8 @@ export default function App() {
           nameForPlayer2={nameForPlayer2}
           setIsEnd={setIsEnd}
           highScores={highScores}
+          setHighScores={setHighScores}
+          setStartGame={setStartGame}
         />
       ) : null}
 
