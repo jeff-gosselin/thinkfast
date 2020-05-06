@@ -54,7 +54,10 @@ export default function Dashboard({
         />
       </div>
 
-      <div onClick={runClock} className={!startClock ? "clock start" : "hide"}>
+      <div
+        onClick={runClock}
+        className={!startClock ? "clock start noselect" : "hide"}
+      >
         START
       </div>
       <div

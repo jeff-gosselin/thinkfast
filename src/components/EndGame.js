@@ -19,10 +19,18 @@ export default function EndGame({
   getAndSetHighScores,
 }) {
   const [isHighScore, setIsHighScore] = useState([]); // When true will notify of new high score
-  let end = new Howl({
-    src: ["audio/end.mp3"],
-    volume: 0.5,
+
+  // End of game sound
+  let trophy = new Howl({
+    src: ["audio/trophy.mp3"],
+    volume: 0.3,
   });
+
+  let end = new Howl({
+    src: ["audio/game-end.mp3"],
+    volume: 0.2,
+  });
+
   // API REQUEST FUNCTIONS
   const eliminateScorerFromTopTen = (scorerId) => {
     axios
@@ -63,7 +71,7 @@ export default function EndGame({
     );
 
     setIsHighScore([...whoMadeTheTopTen]);
-    end.play();
+    trophy.play();
 
     if (postScores(whoMadeTheTopTen) === 2) {
       console.log("Delete:", tempScores[10], tempScores[11]);
@@ -85,6 +93,9 @@ export default function EndGame({
   /////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
+    // Play ending music
+    end.play();
+
     // Get today's date and return as formatted string "m/yy"
     const getTheDate = () => {
       let today = new Date();
@@ -120,12 +131,12 @@ export default function EndGame({
       eliminateScorerFromTopTen(highScores[9]._id);
       postHighScoreToTopTen(p1);
       setIsHighScore([p1]);
-      end.play();
+      trophy.play();
     } else if (player2Score > highScores[9].score) {
       eliminateScorerFromTopTen(highScores[9]._id);
       postHighScoreToTopTen(p2);
       setIsHighScore([p2]);
-      end.play();
+      trophy.play();
     }
   }, [nameForPlayer1]);
 

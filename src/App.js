@@ -16,6 +16,13 @@ import "./styles/App.scss";
 // Dependancy for sound
 import { Howl } from "howler";
 
+// Theme Music
+let theme = new Howl({
+  src: ["audio/theme.mp3"],
+  volume: 0.2,
+  loop: true,
+});
+
 export default function App() {
   // Players
   const [playerMode, setPlayerMode] = useState(null);
@@ -63,11 +70,6 @@ export default function App() {
 
   // Perfoms action based on single or two player mode
   function gameMode(e, players) {
-    let theme = new Howl({
-      src: ["audio/theme.mp3"],
-      volume: 0.2,
-      loop: true,
-    });
     theme.play();
     players === 1 ? setPlayerMode(1) : setPlayerMode(2);
     setInputNamePage(true); // Displays Name Input Page
@@ -75,9 +77,10 @@ export default function App() {
 
   function prepStartGame(e) {
     e.preventDefault();
-    let inputCheck = /^[a-z]+$/i;
+    let inputCheck = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
 
     if (playerMode === 1) {
+      setNameForPlayer1(nameForPlayer1.replace(/\s+$/, ""));
       let inputTest = inputCheck.test(nameForPlayer1);
       if (inputTest) {
         setInputNamePage(false);
@@ -88,6 +91,8 @@ export default function App() {
     }
 
     if (playerMode === 2) {
+      setNameForPlayer1(nameForPlayer1.replace(/\s+$/, ""));
+      setNameForPlayer2(nameForPlayer2.replace(/\s+$/, ""));
       let inputTest1 = inputCheck.test(nameForPlayer1);
       let inputTest2 = inputCheck.test(nameForPlayer2);
       if (inputTest1 && inputTest2) {

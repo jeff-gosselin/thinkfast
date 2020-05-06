@@ -73,14 +73,14 @@ export const cards = [
   },
   {
     id: 13,
-    name: "Telescope",
-    url: "telescope.svg",
+    name: "Rocket",
+    url: "rocket.svg",
     pts: 4,
   },
   {
     id: 14,
-    name: "Telescope",
-    url: "telescope.svg",
+    name: "Rocket",
+    url: "rocket.svg",
     pts: 4,
   },
   {

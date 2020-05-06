@@ -34,6 +34,8 @@ export default function GameScreen({
   // Master Volume
   Howler.volume(0.85);
 
+  // Game Sound Effects
+
   // Cards
   const [gameCards, setGameCards] = useState([]);
   const [cardChoices, setCardChoices] = useState([]);
@@ -84,14 +86,13 @@ export default function GameScreen({
 
   // SPECIAL TILES **************************************************
   const timerTile = () => {
-    let audio = new Howl({
+    setClockTime(clockTime + 30); // Adds 30 seconds to the clock
+    setTimeAdded(true); // initiates clock animation
+    const thirtySecs = new Howl({
       src: ["audio/time-added.mp3"],
       volume: 0.5,
     });
-
-    setClockTime(clockTime + 30); // Adds 30 seconds to the clock
-    setTimeAdded(true); // initiates clock animation
-    audio.play();
+    thirtySecs.play();
   };
 
   const bonusTile = (card) => {
@@ -152,12 +153,11 @@ export default function GameScreen({
       volume: 0.25,
     });
 
-    let tilePoints;
-
     // Doesn't play this normal match sound if the match is the Timer
     card.name !== "Timer" && matchMade.play();
 
     // Check for type of match... bonus tiles or regular match
+    let tilePoints;
     if (card.name === "Wildcard") {
       addToScore(bonusTile(card));
       tilePoints = bonusTile(card);
@@ -181,11 +181,6 @@ export default function GameScreen({
 
   // 3. If there is not a match
   const notMatch = () => {
-    let misMatch = new Howl({
-      src: ["audio/error.mp3"],
-      volume: 0.35,
-    });
-
     addToScore(-1);
 
     // Triggers display of "-1" on screen
@@ -193,6 +188,10 @@ export default function GameScreen({
 
     // Tiles are flipped over to hide them
     setTimeout(() => setCardChoices([]), 800);
+    const misMatch = new Howl({
+      src: ["audio/error.mp3"],
+      volume: 0.35,
+    });
     misMatch.play();
   };
 
@@ -209,12 +208,12 @@ export default function GameScreen({
     }
 
     // Sound for card reveal
-    let revealCard = new Howl({
-      src: ["audio/click.mp3"],
-    });
 
     // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
+      const revealCard = new Howl({
+        src: ["audio/click.mp3"],
+      });
       revealCard.play();
       setCardChoices([card]);
       setTimeAdded(false);
@@ -222,6 +221,9 @@ export default function GameScreen({
 
     // When 2nd card selection is made... checks if same card was not selected twice before adding
     if (cardChoices.length === 1 && card.id !== cardChoices[0].id) {
+      const revealCard = new Howl({
+        src: ["audio/click.mp3"],
+      });
       revealCard.play();
       setCardChoices([...cardChoices, card]);
 
@@ -242,17 +244,12 @@ export default function GameScreen({
 
   // Start clock
   const runClock = () => {
-    let clockClick = new Howl({
+    const clockClick = new Howl({
       src: ["audio/clock-click.mp3"],
       volume: 0.5,
     });
-    // let countdown = new Howl({
-    //   src: ["audio/countdown.mp3"],
-    //   volume: 0.5,
-    //   loop: true
-    // });
     clockClick.play();
-    // countdown.play();
+
     setStartClock(true);
     let clock = setInterval(
       () =>
@@ -260,7 +257,7 @@ export default function GameScreen({
           if (clockTime > 0) {
             return clockTime - 1;
           } else {
-            let buzz = new Howl({
+            const buzz = new Howl({
               src: ["audio/buzzer.mp3"],
               volume: 0.35,
             });
@@ -293,6 +290,7 @@ export default function GameScreen({
     Howler.unload();
   };
 
+  console.log("X");
   return (
     <div id="game-screen">
       {Math.floor(round) > 1 ? gameOver() : null}
