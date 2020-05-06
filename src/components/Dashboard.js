@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as LogoText } from "../svgs/logo-text.svg";
+import { useFullScreen } from "react-browser-hooks";
 import "../styles/Dashboard.scss";
 
 export default function Dashboard({
@@ -15,9 +16,17 @@ export default function Dashboard({
   shake,
   timeAdded,
 }) {
+  const fs = useFullScreen();
   return (
     <div id="dashboard">
       <LogoText className="header-logo" />
+      <img
+        onClick={fs.toggle}
+        className="full-screen-in-game"
+        src={fs.fullScreen ? "min.svg" : "max.svg"}
+        title="Full Screen Toggle"
+        alt=""
+      />
 
       <div className="scoreboard noselect">
         <div className={currentPlayer ? "scoreboard-p1 turn" : "scoreboard-p1"}>

@@ -12,6 +12,14 @@
     margin: 0.8rem 0;
   }
 
+  .full-screen-in-game {
+    position: absolute;
+    width: 4%;
+    opacity: 0.15;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
   .scoreboard {
     width: 100%;
     display: flex;
