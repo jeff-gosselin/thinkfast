@@ -29,7 +29,7 @@ export default function GameScreen({
   setStartGame,
 }) {
   // Time for each round
-  let roundTime = 420;
+  let roundTime = 60;
 
   // Master Volume
   Howler.volume(0.85);
