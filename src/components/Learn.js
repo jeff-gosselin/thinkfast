@@ -16,6 +16,7 @@ export default function Learn({ learnGame, setLearnGame }) {
       onClick={() => hideInstructions()}
       className={learnGame ? "learn" : "learn hide"}
     >
+      <p className="close-btn noselect">X</p>
       <div className="learn-section">
         <LogoBrain className="learn-section-brain" />
         <LogoText className="learn-section-text" />
