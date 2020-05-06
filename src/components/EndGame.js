@@ -62,25 +62,35 @@ export default function EndGame({
   // FUNCTIONS DEALING WITH HIGH SCORES
   // If in 2-player mode and both score higher than the current 10th place score this will determine what scores will get posted and eliminated
   const determineScoresToPost = (p1, p2) => {
-    let tempScores = highScores.slice();
-    tempScores = [...tempScores, p1, p2];
-    tempScores.sort((a, b) => b.score - a.score);
-    let topTen = tempScores.slice(0, 10);
-    let whoMadeTheTopTen = topTen.filter(
-      (score) => !score.hasOwnProperty("_id")
-    );
+    axios
+      .get("https://thinkfast-api.herokuapp.com/scores")
+      .then((response) => {
+        setHighScores([...response.data]);
+        console.log("get and set!");
+        console.log("get and set need to be before this!");
+        let tempScores = response.data.slice();
+        tempScores = [...tempScores, p1, p2];
+        tempScores.sort((a, b) => b.score - a.score);
+        let topTen = tempScores.slice(0, 10);
+        let whoMadeTheTopTen = topTen.filter(
+          (score) => !score.hasOwnProperty("_id")
+        );
 
-    setIsHighScore([...whoMadeTheTopTen]);
-    trophy.play();
+        setIsHighScore([...whoMadeTheTopTen]);
+        trophy.play();
 
-    if (postScores(whoMadeTheTopTen) === 2) {
-      console.log("Delete:", tempScores[10], tempScores[11]);
-      eliminateScorerFromTopTen(tempScores[10]._id);
-      eliminateScorerFromTopTen(tempScores[11]._id);
-    } else {
-      console.log("Delete:", tempScores[11]);
-      eliminateScorerFromTopTen(tempScores[11]._id);
-    }
+        if (postScores(whoMadeTheTopTen) === 2) {
+          console.log("Delete:", tempScores[10], tempScores[11]);
+          eliminateScorerFromTopTen(tempScores[10]._id);
+          eliminateScorerFromTopTen(tempScores[11]._id);
+        } else {
+          console.log("Delete:", tempScores[11]);
+          eliminateScorerFromTopTen(tempScores[11]._id);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const postScores = (scores) => {

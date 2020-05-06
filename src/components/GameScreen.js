@@ -29,7 +29,7 @@ export default function GameScreen({
   setStartGame,
 }) {
   // Time for each round
-  let roundTime = 60;
+  let roundTime = 180;
 
   // Master Volume
   Howler.volume(0.85);
@@ -68,6 +68,7 @@ export default function GameScreen({
   // Resets and shuffles cards if all matches in deck are made
   useEffect(() => {
     if (matches.length === 14) {
+      addToScore(50);
       let shuffledDeck = shuffleCards(cards);
       setMatches([]);
       setGameCards([...shuffledDeck]);
@@ -290,14 +291,14 @@ export default function GameScreen({
     Howler.unload();
   };
 
-  console.log("X");
   return (
     <div id="game-screen">
-      {Math.floor(round) > 8 ? gameOver() : null}
+      {Math.floor(round) > 1 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}
       {cardChoices.length > 1 ? <Points cardPoints={points} /> : null}
+      {matches.length === 14 ? <Points cardPoints={50} /> : null}
       <Dashboard
         currentPlayer={currentPlayer}
         round={round}

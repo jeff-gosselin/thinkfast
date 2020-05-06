@@ -57,11 +57,12 @@ export default function App() {
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////
-  const getAndSetHighScores = (setStateFunction) => {
+  const getAndSetHighScores = async (setStateFunction) => {
     axios
       .get("https://thinkfast-api.herokuapp.com/scores")
       .then((response) => {
         setStateFunction([...response.data]);
+        console.log("get and set!");
       })
       .catch((error) => {
         console.log(error);
