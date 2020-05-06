@@ -29,7 +29,7 @@ export default function GameScreen({
   setStartGame,
 }) {
   // Time for each round
-  let roundTime = 60;
+  let roundTime = 420;
 
   // Master Volume
   Howler.volume(0.85);
@@ -56,6 +56,7 @@ export default function GameScreen({
   const [shake, setShake] = useState(false);
   const [points, setPoints] = useState(0);
   const [bonusPoints, setBonusPoints] = useState(0);
+  const [boardClearedBonus, setBoardClearedBonus] = useState(false);
 
   ////////////////////////////////////////////////////////////////////
 
@@ -68,15 +69,7 @@ export default function GameScreen({
   // Resets and shuffles cards if all matches in deck are made
   useEffect(() => {
     if (matches.length === 14) {
-      const cleared = new Howl({
-        src: ["audio/cleared.mp3"],
-        volume: 0.5,
-      });
-      cleared.play();
-      let shuffledDeck = shuffleCards(cards);
-      setGameCards([...shuffledDeck]);
-      setTimeout(() => setMatches([]), 1000);
-      addToScore(25);
+      setTimeout(() => boardCleared(), 750);
     }
   }, [cardChoices]);
 
@@ -130,6 +123,21 @@ export default function GameScreen({
   };
 
   // SPECIAL TILES ABOVE **************************************************
+
+  // If someone clears a board
+  const boardCleared = () => {
+    const cleared = new Howl({
+      src: ["audio/cleared.mp3"],
+      volume: 0.5,
+    });
+    cleared.play();
+    let shuffledDeck = shuffleCards(cards);
+    setGameCards([...shuffledDeck]);
+    setBoardClearedBonus(true);
+    addToScore(50);
+    setTimeout(() => setBoardClearedBonus(false), 1000);
+    setMatches([]);
+  };
 
   // Scoring
   const addToScore = (points) => {
@@ -213,8 +221,6 @@ export default function GameScreen({
       return;
     }
 
-    // Sound for card reveal
-
     // Adds a card if no other cards were yet selected
     if (cardChoices.length === 0) {
       const revealCard = new Howl({
@@ -223,6 +229,7 @@ export default function GameScreen({
       revealCard.play();
       setCardChoices([card]);
       setTimeAdded(false);
+      setBoardClearedBonus(false);
     }
 
     // When 2nd card selection is made... checks if same card was not selected twice before adding
@@ -303,7 +310,7 @@ export default function GameScreen({
         <Round roundNumber={round} />
       ) : null}
       {cardChoices.length > 1 ? <Points cardPoints={points} /> : null}
-      {matches.length === 14 ? <Points cardPoints={50} /> : null}
+      {boardClearedBonus ? <Points cardPoints={50} /> : null}
       <Dashboard
         currentPlayer={currentPlayer}
         round={round}
