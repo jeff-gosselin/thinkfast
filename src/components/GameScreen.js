@@ -68,10 +68,15 @@ export default function GameScreen({
   // Resets and shuffles cards if all matches in deck are made
   useEffect(() => {
     if (matches.length === 14) {
-      addToScore(50);
+      const cleared = new Howl({
+        src: ["audio/cleared.mp3"],
+        volume: 0.5,
+      });
+      cleared.play();
       let shuffledDeck = shuffleCards(cards);
-      setMatches([]);
       setGameCards([...shuffledDeck]);
+      setTimeout(() => setMatches([]), 1000);
+      addToScore(25);
     }
   }, [cardChoices]);
 
