@@ -1,4 +1,5 @@
 import React from "react";
+import { useFullScreen } from "react-browser-hooks";
 import "../styles/SelectPlayers.scss";
 
 export default function SelectPlayers({
@@ -6,6 +7,7 @@ export default function SelectPlayers({
   playerMode,
   setHighScoresPage,
 }) {
+  const fs = useFullScreen();
   return (
     <div
       className={
@@ -26,6 +28,13 @@ export default function SelectPlayers({
       >
         HIGH SCORES
       </button>
+      <img
+        onClick={fs.toggle}
+        className="full-screen"
+        src={fs.fullScreen ? "min.svg" : "max.svg"}
+        title="Full Screen Toggle"
+        alt=""
+      />
     </div>
   );
 }

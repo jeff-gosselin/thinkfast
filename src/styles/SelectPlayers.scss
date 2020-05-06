@@ -81,6 +81,16 @@
   }
 }
 
+.full-screen {
+  opacity: 0.25;
+  width: 15%;
+  margin-top: 2.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 /* Adjust menu for width */
 @media (max-width: 600px) {
   .player-menu {
