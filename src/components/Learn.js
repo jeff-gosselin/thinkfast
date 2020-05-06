@@ -86,6 +86,11 @@ export default function Learn({ learnGame, setLearnGame }) {
           </div>
 
           <p className="deduct">
+            ** Find all the maches on the board before the time runs out to
+            receive 50 points!!
+          </p>
+
+          <p className="deduct">
             It is worth noting that everytime you select 2 tiles and fail to get
             a match, you are deducted a point.
           </p>
