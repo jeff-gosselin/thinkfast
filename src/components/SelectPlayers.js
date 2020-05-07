@@ -28,13 +28,15 @@ export default function SelectPlayers({
       >
         HIGH SCORES
       </button>
-      <img
-        onClick={fs.toggle}
-        className="full-screen"
-        src={fs.fullScreen ? "min.svg" : "max.svg"}
-        title="Full Screen Toggle"
-        alt=""
-      />
+      <div className="full-screen">
+        <img
+          onClick={fs.toggle}
+          src={fs.fullScreen ? "min.svg" : "max.svg"}
+          title="Full Screen Toggle"
+          alt=""
+        />
+        <p>FULL SCREEN MODE</p>
+      </div>
     </div>
   );
 }

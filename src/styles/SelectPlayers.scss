@@ -82,12 +82,26 @@
 }
 
 .full-screen {
-  opacity: 0.15;
-  width: 12%;
+  position: relative;
+  width: 100%;
   margin-top: 2.5rem;
 
-  &:hover {
-    cursor: pointer;
+  img {
+    opacity: 0.175;
+    width: 12%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    position: absolute;
+    font-size: 0.75rem;
+    width: 100%;
+    margin-top: 0.35rem;
+    color: $gray;
+    opacity: 0;
+    animation: blink 1s ease 0.5s 4 forwards;
   }
 }
 
@@ -113,6 +127,18 @@
 
 .menu-vanish {
   animation: hideMenu 1s ease 0s 1 forwards;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes displayMenu {
