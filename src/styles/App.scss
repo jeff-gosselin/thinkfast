@@ -86,7 +86,7 @@
 @media only screen and (min-device-width: 360px) and (max-device-width: 640px) and (orientation: portrait) {
   #App {
     width: calc(100vh * 0.5625) !important;
-    max-width: 360px;
+    max-width: 360px !important;
   }
 }
 
@@ -94,6 +94,6 @@
 @media only screen and (min-device-width: 360px) and (device-height: 740px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
   #App {
     width: calc(100vh * 0.4864) !important;
-    max-width: 360px;
+    max-width: 360px !important;
   }
 }

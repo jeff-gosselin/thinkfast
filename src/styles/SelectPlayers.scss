@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10rem 0 0;
+  margin: 9rem 0 0;
   width: 50%;
   min-width: 200px;
   text-align: center;
@@ -67,7 +67,7 @@
 /* Adjust menu for height */
 @media (max-height: 930px) {
   .player-menu {
-    margin: 6rem 0 0;
+    margin: 4.5rem 0 0;
 
     h2 {
       font-size: 1.4rem !important;
