@@ -1,13 +1,12 @@
-
-
 .logo {
   display: flex;
   position: relative;
   justify-content: flex-start;
   flex-direction: column;
   width: 30.5%;
-  top: 40%;
-  &-brain, &-text {
+  // top: 40%;
+  &-brain,
+  &-text {
     width: 100%;
   }
 }
@@ -20,7 +19,6 @@
   0% {
     opacity: 1;
     transform: scale(1);
-    
   }
 
   100% {

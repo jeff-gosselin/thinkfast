@@ -163,7 +163,7 @@ export default function App() {
       {playerMode === null ? (
         <div className="learn-game">
           <p onClick={() => setLearnGame(true)} className="learn-game-link">
-            How to Play
+            HOW TO PLAY
           </p>
         </div>
       ) : null}
