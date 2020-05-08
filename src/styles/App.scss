@@ -5,7 +5,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  width: calc(100vh * 0.486); // .4864
+  max-width: calc(100vh * 0.486); // .4864
   min-width: 320px; // I originally had 321.45px
   min-height: 640px; // I originally had 726px
 
@@ -87,7 +87,6 @@
   #App {
     width: calc(100vh * 0.5625) !important;
     max-width: 360px;
-    max-height: 640px;
   }
 }
 
@@ -96,6 +95,5 @@
   #App {
     width: calc(100vh * 0.4864) !important;
     max-width: 360px;
-    max-height: 740px;
   }
 }

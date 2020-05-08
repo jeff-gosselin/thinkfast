@@ -18,7 +18,7 @@ export default function EndGame({
   setHighScores,
   getAndSetHighScores,
 }) {
-  const [isHighScore, setIsHighScore] = useState([]); // When true will notify of new high score
+  const [isHighScore, setIsHighScore] = useState([]); // Array of whoever just got a high score
 
   // End of game sound
   let trophy = new Howl({
@@ -129,24 +129,29 @@ export default function EndGame({
     };
 
     // First, in a 2-player game, determine if both players score high enough to be in top 10.
-    // Second, in either a single or 2-player game check if player 1 scored high enough.
-    // Third, check if player 2 scored high enough
+    // Second, in either a single or 2-player game check if only player 1 scored high enough.
+    // Third, check if only player 2 scored high enough in a 2-player game.
     if (
       playerMode === 2 &&
       player1Score > highScores[9].score &&
       player2Score > highScores[9].score
     ) {
       determineScoresToPost(p1, p2);
-    } else if (player1Score > highScores[9].score) {
-      eliminateScorerFromTopTen(highScores[9]._id);
-      postHighScoreToTopTen(p1);
-      setIsHighScore([p1]);
-      trophy.play();
-    } else if (player2Score > highScores[9].score) {
-      eliminateScorerFromTopTen(highScores[9]._id);
-      postHighScoreToTopTen(p2);
-      setIsHighScore([p2]);
-      trophy.play();
+    } else {
+      getAndSetHighScores(setHighScores);
+      if (p1.score > highScores[9].score) {
+        eliminateScorerFromTopTen(highScores[9]._id);
+        postHighScoreToTopTen(p1);
+        setIsHighScore([p1]);
+        trophy.play();
+      }
+
+      if (playerMode === 2 && p2.score > highScores[9].score) {
+        eliminateScorerFromTopTen(highScores[9]._id);
+        postHighScoreToTopTen(p2);
+        setIsHighScore([p2]);
+        trophy.play();
+      }
     }
   }, [nameForPlayer1]);
 
