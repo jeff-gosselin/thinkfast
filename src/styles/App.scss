@@ -77,12 +77,25 @@
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
   #App {
     width: calc(100vh * 0.5622) !important;
+    max-width: 375px;
+    max-height: 667px;
   }
 }
 
 /* Galaxy S7 in portrait */
 @media only screen and (min-device-width: 360px) and (max-device-width: 640px) and (orientation: portrait) {
   #App {
-    max-width: calc(100vh * 0.5625) !important;
+    width: calc(100vh * 0.5625) !important;
+    max-width: 360px;
+    max-height: 640px;
+  }
+}
+
+// Galaxy Note 9
+@media only screen and (min-device-width: 360px) and (device-height: 740px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  #App {
+    width: calc(100vh * 0.4864) !important;
+    max-width: 360px;
+    max-height: 740px;
   }
 }
