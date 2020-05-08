@@ -164,3 +164,10 @@
     transform: translateY(10rem);
   }
 }
+
+/* iPhone 6 in portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+  .full-screen {
+    display: none;
+  }
+}

@@ -5,9 +5,10 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  max-width: calc(100vh * 0.465);
-  min-width: 321.45px;
-  min-height: 726px;
+  width: calc(100vh * 0.486); // .4864
+  min-width: 320px; // I originally had 321.45px
+  min-height: 640px; // I originally had 726px
+
   background-color: $off-white;
   overflow: hidden;
 
@@ -68,5 +69,20 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+// MEDIA QUERIES
+/* iPhone 6 in portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+  #App {
+    width: calc(100vh * 0.5622) !important;
+  }
+}
+
+/* Galaxy S7 in portrait */
+@media only screen and (min-device-width: 360px) and (max-device-width: 640px) and (orientation: portrait) {
+  #App {
+    max-width: calc(100vh * 0.5625) !important;
   }
 }
