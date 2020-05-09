@@ -138,20 +138,28 @@ export default function EndGame({
     ) {
       determineScoresToPost(p1, p2);
     } else {
-      getAndSetHighScores(setHighScores);
-      if (p1.score > highScores[9].score) {
-        eliminateScorerFromTopTen(highScores[9]._id);
-        postHighScoreToTopTen(p1);
-        setIsHighScore([p1]);
-        trophy.play();
-      }
+      axios
+        .get("https://thinkfast-api.herokuapp.com/scores")
+        .then((response) => {
+          setHighScores([...response.data]);
 
-      if (playerMode === 2 && p2.score > highScores[9].score) {
-        eliminateScorerFromTopTen(highScores[9]._id);
-        postHighScoreToTopTen(p2);
-        setIsHighScore([p2]);
-        trophy.play();
-      }
+          if (p1.score > highScores[9].score) {
+            eliminateScorerFromTopTen(highScores[9]._id);
+            postHighScoreToTopTen(p1);
+            setIsHighScore([p1]);
+            trophy.play();
+          }
+
+          if (playerMode === 2 && p2.score > highScores[9].score) {
+            eliminateScorerFromTopTen(highScores[9]._id);
+            postHighScoreToTopTen(p2);
+            setIsHighScore([p2]);
+            trophy.play();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, [nameForPlayer1]);
 
