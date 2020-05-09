@@ -29,7 +29,8 @@ export default function GameScreen({
   setStartGame,
 }) {
   // Time for each round
-  let roundTime = 10;
+  let roundTime = 60;
+  let numOfRounds = 8;
 
   // Master Volume
   Howler.volume(0.85);
@@ -313,7 +314,7 @@ export default function GameScreen({
 
   return (
     <div id="game-screen">
-      {Math.floor(round) > 1 ? gameOver() : null}
+      {Math.floor(round) > numOfRounds ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}
