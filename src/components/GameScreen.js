@@ -29,7 +29,7 @@ export default function GameScreen({
   setStartGame,
 }) {
   // Time for each round
-  let roundTime = 60;
+  let roundTime = 10;
 
   // Master Volume
   Howler.volume(0.85);
@@ -90,6 +90,7 @@ export default function GameScreen({
     const thirtySecs = new Howl({
       src: ["audio/time-added.mp3"],
       volume: 0.5,
+      html5: true,
     });
     thirtySecs.play();
   };
@@ -129,6 +130,7 @@ export default function GameScreen({
     const cleared = new Howl({
       src: ["audio/cleared.mp3"],
       volume: 0.5,
+      html5: true,
     });
     cleared.play();
     let shuffledDeck = shuffleCards(cards);
@@ -165,6 +167,7 @@ export default function GameScreen({
     const matchMade = new Howl({
       src: ["audio/match.mp3"],
       volume: 0.25,
+      html5: true,
     });
 
     // Doesn't play this normal match sound if the match is the Timer
@@ -205,6 +208,7 @@ export default function GameScreen({
     const misMatch = new Howl({
       src: ["audio/error.mp3"],
       volume: 0.35,
+      html5: true,
     });
     misMatch.play();
   };
@@ -225,6 +229,7 @@ export default function GameScreen({
     if (cardChoices.length === 0) {
       const revealCard = new Howl({
         src: ["audio/click.mp3"],
+        html5: true,
       });
       revealCard.play();
       setCardChoices([card]);
@@ -236,6 +241,7 @@ export default function GameScreen({
     if (cardChoices.length === 1 && card.id !== cardChoices[0].id) {
       const revealCard = new Howl({
         src: ["audio/click.mp3"],
+        html5: true,
       });
       revealCard.play();
       setCardChoices([...cardChoices, card]);
@@ -260,6 +266,7 @@ export default function GameScreen({
     const clockClick = new Howl({
       src: ["audio/clock-click.mp3"],
       volume: 0.5,
+      html5: true,
     });
     clockClick.play();
 
@@ -273,6 +280,7 @@ export default function GameScreen({
             const buzz = new Howl({
               src: ["audio/buzzer.mp3"],
               volume: 0.35,
+              html5: true,
             });
             buzz.play();
             setTimeAdded(false);
@@ -305,7 +313,7 @@ export default function GameScreen({
 
   return (
     <div id="game-screen">
-      {Math.floor(round) > 8 ? gameOver() : null}
+      {Math.floor(round) > 1 ? gameOver() : null}
       {round === Math.ceil(round) && !startClock ? (
         <Round roundNumber={round} />
       ) : null}

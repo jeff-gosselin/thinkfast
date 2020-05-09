@@ -16,13 +16,6 @@ import "./styles/App.scss";
 // Dependancy for sound
 import { Howl } from "howler";
 
-// Theme Music
-let theme = new Howl({
-  src: ["audio/theme.mp3"],
-  volume: 0.2,
-  loop: true,
-});
-
 export default function App() {
   // Players
   const [playerMode, setPlayerMode] = useState(null);
@@ -49,6 +42,14 @@ export default function App() {
 
   // Determines if game ends
   const [isEnd, setIsEnd] = useState(false);
+
+  // Theme Music
+  let theme = new Howl({
+    src: ["audio/theme.mp3"],
+    volume: 0.2,
+    loop: true,
+    html5: true,
+  });
 
   ///////////////////////////////////////////////////////////////////////////
 
@@ -121,6 +122,7 @@ export default function App() {
           highScores={highScores}
           setHighScores={setHighScores}
           getAndSetHighScores={getAndSetHighScores}
+          theme={theme}
         />
       ) : null}
       <div id="start-screen">
@@ -168,12 +170,16 @@ export default function App() {
         </div>
       ) : null}
 
-      <HighScores
-        highScoresPage={highScoresPage}
-        setHighScoresPage={setHighScoresPage}
-        highScores={highScores}
-      />
-      <Learn learnGame={learnGame} setLearnGame={setLearnGame} />
+      {!startGame ? (
+        <HighScores
+          highScoresPage={highScoresPage}
+          setHighScoresPage={setHighScoresPage}
+          highScores={highScores}
+        />
+      ) : null}
+      {!startGame ? (
+        <Learn learnGame={learnGame} setLearnGame={setLearnGame} />
+      ) : null}
     </div>
   );
 }
