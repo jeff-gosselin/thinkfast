@@ -63,7 +63,7 @@ export default function App() {
       .get("https://thinkfast-api.herokuapp.com/scores")
       .then((response) => {
         setStateFunction([...response.data]);
-        console.log("get and set!");
+        console.log("From App:", response.data);
       })
       .catch((error) => {
         console.log(error);

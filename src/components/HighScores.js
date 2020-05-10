@@ -24,8 +24,8 @@ export default function HighScores({
 
   // High scores are sorted from highest to lowest, numbered, and formated
   let pos = 0;
-  let sortedScores = highScores.sort((a, b) => b.score - a.score);
-  let scores = sortedScores.map((highscore) => {
+  // let sortedScores = highScores.sort((a, b) => b.score - a.score);
+  let scores = highScores.map((highscore) => {
     return (
       <Score
         position={++pos}

@@ -143,15 +143,15 @@ export default function EndGame({
         .then((response) => {
           setHighScores([...response.data]);
 
-          if (p1.score > highScores[9].score) {
-            eliminateScorerFromTopTen(highScores[9]._id);
+          if (p1.score > response.data[9].score) {
+            eliminateScorerFromTopTen(response.data[9]._id);
             postHighScoreToTopTen(p1);
             setIsHighScore([p1]);
             trophy.play();
           }
 
-          if (playerMode === 2 && p2.score > highScores[9].score) {
-            eliminateScorerFromTopTen(highScores[9]._id);
+          if (playerMode === 2 && p2.score > response.data[9].score) {
+            eliminateScorerFromTopTen(response.data[9]._id);
             postHighScoreToTopTen(p2);
             setIsHighScore([p2]);
             trophy.play();
