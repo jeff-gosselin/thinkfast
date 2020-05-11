@@ -48,7 +48,6 @@ export default function App() {
     src: ["audio/theme.mp3"],
     volume: 0.2,
     loop: true,
-    html5: true,
   });
 
   ///////////////////////////////////////////////////////////////////////////
