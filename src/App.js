@@ -61,7 +61,9 @@ export default function App() {
     axios
       .get("https://thinkfast-api.herokuapp.com/scores")
       .then((response) => {
-        setStateFunction([...response.data]);
+        let data = response.data.sort((a, b) => b.score - a.score);
+        console.log("sorted", data);
+        setStateFunction(data);
         console.log("From App:", response.data);
       })
       .catch((error) => {

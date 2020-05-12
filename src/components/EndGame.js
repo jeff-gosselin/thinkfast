@@ -141,7 +141,8 @@ export default function EndGame({
       axios
         .get("https://thinkfast-api.herokuapp.com/scores")
         .then((response) => {
-          setHighScores([...response.data]);
+          let data = response.data.sort((a, b) => b.score - a.score);
+          setHighScores(data);
 
           if (p1.score > response.data[9].score) {
             eliminateScorerFromTopTen(response.data[9]._id);
