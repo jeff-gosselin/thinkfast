@@ -72,7 +72,7 @@ export default function Learn({ learnGame, setLearnGame }) {
 
             <div className="points-info-p">
               <h4>The Wildcard</h4>
-              <p>Worth as much as your previous match</p>
+              <p>Replicates your previous match</p>
             </div>
           </div>
 
